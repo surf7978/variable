@@ -25,8 +25,7 @@ public class MorningCode
 	    a=0;
 	    sum7=0;
 	    sum8=0;
-	    
-	    while(true) 
+	    while(a>=0) 
 	    {
 	    	if(a>55) {break;}
 	    	else if(a % 7 == 0) {sum7 += a;}
@@ -38,6 +37,7 @@ public class MorningCode
 	    System.out.println("현재 sum7값 : "+sum7);
 	    System.out.println("현재 sum8값 : "+sum8);
 		System.out.println("-------------");
+		
 		System.out.println("a값 56 에서 종료해야됨");
 	    System.out.println("sum7값 "+(7+14+21+28+35+42+49)+" 나와야 함");
 	    System.out.println("sum8값 "+(8+16+24+32+40+48)+" 나와야 함");
