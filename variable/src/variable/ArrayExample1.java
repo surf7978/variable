@@ -14,6 +14,7 @@ public class ArrayExample1 {
 		System.out.println(sum);
 		System.out.println((10+30+50+70+90)+"과 같아야함");
 		System.out.println("-------------");
+
 //numbers.length 사용할 것 
 		sum=0;
 		for(int i=0; i<numbers.length; i++) 
