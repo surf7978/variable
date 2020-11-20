@@ -1,12 +1,24 @@
-package variable4;
-
-import java.util.Arrays;
+package variable6;
 
 public class Member {
 	private int id;
 	private String name;
 	private String ph;
-	private String[] cls;
+	private String cls;
+	
+	public Member() {
+		
+	}
+	
+	
+	public Member(int id, String name, String ph, String cls) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.ph = ph;
+		this.cls = cls;
+	}
+
 
 	public int getId() {
 		return id;
@@ -26,16 +38,15 @@ public class Member {
 	public void setPh(String ph) {
 		this.ph = ph;
 	}
-	public String[] getCls() {
+	public String getCls() {
 		return cls;
 	}
-	public void setCls(String[] cls) {
+	public void setCls(String cls) {
 		this.cls = cls;
 	}
 	@Override
 	public String toString() {
-		
-		return "Member [회원번호=" + id + ", 회원이름=" + name + ", 연락처=" + ph + ", 강좌=" + Arrays.toString(cls) + "]";
+		return "Member [id=" + id + ", name=" + name + ", ph=" + ph + ", cls=" + cls + "]";
 	}
 	
 	
