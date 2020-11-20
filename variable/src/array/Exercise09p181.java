@@ -32,7 +32,7 @@ public class Exercise09p181
 					{
 						if(c<=0) 
 						{
-							System.out.println("뭐하십니까? 제대로 등록하세요.");
+							System.out.println("뭐하십니까? 휴먼, 제대로 등록하세요.");
 							break;
 						}
 						else 
@@ -102,10 +102,7 @@ public class Exercise09p181
 			{
 				b = false;
 			}
-			
 		}
-		System.out.println("<프로그램 종료>");
-
+		System.out.println("< 프로그램 종료 >");
 	}
-
 }
