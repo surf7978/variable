@@ -40,4 +40,8 @@ public class Customer {
 		System.out.println("계좌번호 : "+this.bankAccount+", 예금주 : "+this.owner+", 잔액 : "+this.balance);
 	}
 	
+	public void showAccNoInfo() {
+		System.out.print(this.bankAccount+" ");
+	}
+	
 }

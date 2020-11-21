@@ -16,7 +16,7 @@ public class ArrayExample1
 		
 		sum=0;
 		System.out.println("결과값2 : "+sum);
-		System.out.println("결과값2 : "+sumAry(intAry));
+		System.out.println("결과값2 : "+sumAry(intAry));//sumAry 어디다 선언했냐고? 밑에 인스턴스로 있음
 		
 		int[] intAry2 = {11,22,33,44,55,66,77};
 		sum=0;

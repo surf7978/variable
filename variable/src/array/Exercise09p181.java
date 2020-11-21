@@ -28,7 +28,7 @@ public class Exercise09p181
 					System.out.println("학생이 없습니다.");
 					System.out.print("1.학생수 등록 >> ");
 					c = a.nextInt();
-					for(int i=0; i>=0; i++) 
+					for(int i=0; i>=0;) 
 					{
 						if(c<=0) 
 						{

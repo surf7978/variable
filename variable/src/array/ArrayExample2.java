@@ -12,17 +12,20 @@ public class ArrayExample2
 		dAry = new double[] {23.2, 55.3, 52.8, 62.8};
 		
 		//택1
-//		double sum =0;
-//		for(int i=0; i<dAry.length; i++) 
-//		{
-//			sum += dAry[i];
-//		}
-//		System.out.println("결과값: "+sum);
+		double sum =0;
+		for(int i=0; i<dAry.length; i++) 
+		{
+			sum += dAry[i];
+		}
+		System.out.println("결과값: "+sum);
 		
 		
 		//택2
+		System.out.println("결과값: "+doubleSum(dAry));
+		
+		//택3
 		result = doubleSum(dAry);
-		System.out.println("결과값: "+result);
+		System.out.println("결과값 : "+result);
 
 	}
 	

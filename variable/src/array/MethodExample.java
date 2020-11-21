@@ -9,7 +9,7 @@ public class MethodExample {
 		result = ((num1 + num2) / 2 + 50) / 10;
 		System.out.println(result);
 
-		int val1 = 22, val2 = 55;
+		int val1 = 34, val2 = 55;
 		result = ((val1 + val2) / 2 + 50) / 10;
 		System.out.println(result);
 
@@ -18,7 +18,7 @@ public class MethodExample {
 		System.out.println(result);
 
 		int val5 = 33, val6 = 35;
-		result = sumMethod(val3, val4);
+		result = sumMethod(val5, val6);
 		System.out.println(result);
 	}
 
