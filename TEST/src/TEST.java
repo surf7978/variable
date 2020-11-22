@@ -2,16 +2,14 @@ public class TEST
 {
 	public static void main(String[] args) 
 	{
-		int a,b;
-		int c=5; //ÁÙ´ç ¸î±ÛÀÚ ³ª¿ÃÁö °áÁ¤
-		for(a=0; a<c; a++) //¸î ÁÙ ³ª¿ÃÁö °áÁ¤
-		{
-		 for(b=a; b<c; b++) {System.out.print("$");}
-		 //a°¡ $Ãâ·Â¼ö¿¡ ¿µÇâÁÜ
-		 for(b=c-a; b<c; b++) {System.out.print("#");}
-		 //c-a°¡ #Ãâ·Â¼ö¿¡ ¿µÇâÁÜ		
-		 System.out.println(""); 
-		 //ÁÙ¹Ù²Ş¿ë
-		}
+		double a = Math.random()*6;
+		System.out.println((int)a);
+		
+		String[][] c = new String[1][1];
+		String d ="ê°€";
+		int e =1;
+		c[0][0] = d+e;
+		System.out.println(c[0][0]);
+
 	}
 }
