@@ -51,4 +51,11 @@ public class Car {
 		this.maxSpeed = maxSpeed;
 	}
 	
+	public void showInfo() {
+		System.out.println(company);
+		System.out.println(model);
+		System.out.println(color);
+		System.out.println(maxSpeed);
+	}
+	
 }

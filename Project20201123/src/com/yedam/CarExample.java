@@ -22,14 +22,16 @@ public class CarExample {
 
 		Car[] cars = { c1, c2, c3, c4 };
 		for (Car car : cars) {
-			if (car != null) {
-				if ("삼성".equals(car.getCompany())) {
-					System.out.println(car.getModel());
-					System.out.println(car.getMaxSpeed());
-					System.out.println(car.getColor());
+		//	if (car != null) {
+			//	if ("삼성".equals(car.getCompany())) {
+				//	System.out.println(car.getCompany());
+				//	System.out.println(car.getModel());
+				//	System.out.println(car.getMaxSpeed());
+				//	System.out.println(car.getColor());
+					car.showInfo();
 					System.out.println();
-				}
-			}
+			//	}
+		//	}
 		}
 		System.out.println("---");
 	}
