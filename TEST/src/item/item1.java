@@ -4,7 +4,7 @@ import java.util.Scanner; //이거해야 스캐너 사용가능
 
 public class item1 {
 	public static void main(String[] args) {
-		String[][] bag = new String[10][6];
+		String[][] bag = new String[10][7];
 		Scanner scn = new Scanner(System.in);
 		boolean run = true;
 
@@ -19,14 +19,15 @@ public class item1 {
 			if (selectItem == 1) {
 				for (int i = 0; i < bag.length; i++) {
 					if (bag[i][0] == null) {
-						bag[i][0] = (i+1) + "번째 칸 : ";
-						bag[i][1] = "무기 ";
-						for (int k = 2; k < bag[i].length; k++) {
+						bag[i][0] = (i + 1) + "번째 칸 : ";
+						bag[i][1] = 0 + "강";
+						bag[i][2] = "무기 ";
+						for (int k = 3; k < bag[i].length; k++) {
 							// 0공격력 1방어력 2체력 3치명확률 4속도
 							double randomOption = Math.random() * 5;
 							if ((int) randomOption == 0) {
 								String OptionName = "공격력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -35,14 +36,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 1) {
 								String OptionName = "방어력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -51,14 +52,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 2) {
 								String OptionName = "체력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -67,14 +68,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 3) {
 								String OptionName = "치명확률";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -83,14 +84,14 @@ public class item1 {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 4 || (int) randomOption == 5) {
 								String OptionName = "속도";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 2;
@@ -99,7 +100,7 @@ public class item1 {
 									int Value;
 									Value = 3;
 									bag[i][k] = OptionName + Value + " ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + " ";
@@ -112,14 +113,15 @@ public class item1 {
 			} else if (selectItem == 2) {
 				for (int i = 0; i < bag.length; i++) {
 					if (bag[i][0] == null) {
-						bag[i][0] = (i+1) + "번째 칸 : ";
-						bag[i][1] = "투구 ";
-						for (int k = 2; k < bag[i].length; k++) {
+						bag[i][0] = (i + 1) + "번째 칸 : ";
+						bag[i][1] = 0 + "강";
+						bag[i][2] = "투구 ";
+						for (int k = 3; k < bag[i].length; k++) {
 							// 0공격력 1방어력 2체력 3치명확률 4속도
 							double randomOption = Math.random() * 5;
 							if ((int) randomOption == 0) {
 								String OptionName = "공격력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -128,14 +130,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 1) {
 								String OptionName = "방어력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -144,14 +146,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 2) {
 								String OptionName = "체력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -160,14 +162,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 3) {
 								String OptionName = "치명확률";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -176,14 +178,14 @@ public class item1 {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 4 || (int) randomOption == 5) {
 								String OptionName = "속도";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 2;
@@ -192,7 +194,7 @@ public class item1 {
 									int Value;
 									Value = 3;
 									bag[i][k] = OptionName + Value + " ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + " ";
@@ -205,14 +207,15 @@ public class item1 {
 			} else if (selectItem == 3) {
 				for (int i = 0; i < bag.length; i++) {
 					if (bag[i][0] == null) {
-						bag[i][0] = (i+1) + "번째 칸 : ";
-						bag[i][1] = "갑옷 ";
-						for (int k = 2; k < bag[i].length; k++) {
+						bag[i][0] = (i + 1) + "번째 칸 : ";
+						bag[i][1] = 0 + "강";
+						bag[i][2] = "갑옷 ";
+						for (int k = 3; k < bag[i].length; k++) {
 							// 0공격력 1방어력 2체력 3치명확률 4속도
 							double randomOption = Math.random() * 5;
 							if ((int) randomOption == 0) {
 								String OptionName = "공격력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -221,14 +224,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 1) {
 								String OptionName = "방어력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -237,14 +240,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 2) {
 								String OptionName = "체력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -253,14 +256,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 3) {
 								String OptionName = "치명확률";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -269,14 +272,14 @@ public class item1 {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 4 || (int) randomOption == 5) {
 								String OptionName = "속도";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 2;
@@ -285,7 +288,7 @@ public class item1 {
 									int Value;
 									Value = 3;
 									bag[i][k] = OptionName + Value + " ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + " ";
@@ -298,14 +301,15 @@ public class item1 {
 			} else if (selectItem == 4) {
 				for (int i = 0; i < bag.length; i++) {
 					if (bag[i][0] == null) {
-						bag[i][0] = (i+1) + "번째 칸 : ";
-						bag[i][1] = "신발 ";
-						for (int k = 2; k < bag[i].length; k++) {
+						bag[i][0] = (i + 1) + "번째 칸 : ";
+						bag[i][1] = 0 + "강";
+						bag[i][2] = "신발 ";
+						for (int k = 3; k < bag[i].length; k++) {
 							// 0공격력 1방어력 2체력 3치명확률 4속도
 							double randomOption = Math.random() * 5;
 							if ((int) randomOption == 0) {
 								String OptionName = "공격력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -314,14 +318,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 1) {
 								String OptionName = "방어력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -330,14 +334,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 2) {
 								String OptionName = "체력";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -346,14 +350,14 @@ public class item1 {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 7;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 3) {
 								String OptionName = "치명확률";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 3;
@@ -362,14 +366,14 @@ public class item1 {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + "% ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 5;
 									bag[i][k] = OptionName + Value + "% ";
 								}
 							} else if ((int) randomOption == 4 || (int) randomOption == 5) {
 								String OptionName = "속도";
-								double randomValue = Math.random() * 2;
+								double randomValue = Math.random() * 3;
 								if ((int) randomValue == 0) {
 									int Value;
 									Value = 2;
@@ -378,7 +382,7 @@ public class item1 {
 									int Value;
 									Value = 3;
 									bag[i][k] = OptionName + Value + " ";
-								} else if ((int) randomValue == 2) {
+								} else if ((int) randomValue == 2 || (int) randomValue == 3) {
 									int Value;
 									Value = 4;
 									bag[i][k] = OptionName + Value + " ";
