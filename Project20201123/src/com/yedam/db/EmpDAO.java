@@ -10,7 +10,7 @@ public class EmpDAO {
 	Connection conn = getConnection();
 
 	public void insertEmployee(Employee emp) {
-		String sql = "insert into emp1(last_name, email, job_id, hire_date) "//
+		String sql = "insert into employees(last_name, email, job_id, hire_date) "//
 				+ "values(?, ?, ?, ?)";// ?= 각 파라미터에 값 지정해줘야함
 									   // insertEmployee(Employee emp)에 입력되어있음
 		try {
@@ -29,7 +29,7 @@ public class EmpDAO {
 	}
 
 	public Employee[] getEmpList() {
-		String sql = "select * from emp1";
+		String sql = "select * from employees";
 		Employee[] emps = new Employee[100];
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);
@@ -77,8 +77,8 @@ public class EmpDAO {
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			String user = "hr";
-			String pw = "hr";
+			String user = "oracle";
+			String pw = "oracle";
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
