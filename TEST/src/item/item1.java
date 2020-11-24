@@ -404,6 +404,56 @@ public class item1 {
 					}
 					System.out.println();
 				}
+			}else if (selectItem == 7) {
+				System.out.print("제련할 장비 선택 >> ");
+				int selectUpItem = scn.nextInt();
+				for (int i = 1; i < bag.length; i++) {
+					if (selectUpItem == i) {
+						bag[i - 1][1] += 1;
+						double randomUpgrade = Math.random() * 4;
+						if ((int) randomUpgrade == 0) {
+							double randomUpgradeVal = Math.random() * 3;
+							if ((int) randomUpgradeVal == 0) {
+								bag[i - 1][3] += 3;
+							} else if ((int) randomUpgradeVal == 1) {
+								bag[i - 1][3] += 4;
+							} else if ((int) randomUpgradeVal == 2 || (int) randomUpgradeVal == 3) {
+								bag[i - 1][3] += 5;
+							}
+						}
+						else if ((int) randomUpgrade == 1) {
+							double randomUpgradeVal = Math.random() * 3;
+							if ((int) randomUpgradeVal == 0) {
+								bag[i - 1][4] += 3;
+							} else if ((int) randomUpgradeVal == 1) {
+								bag[i - 1][4] += 4;
+							} else if ((int) randomUpgradeVal == 2 || (int) randomUpgradeVal == 3) {
+								bag[i - 1][4] += 5;
+							}
+						}
+						else if ((int) randomUpgrade == 2) {
+							double randomUpgradeVal = Math.random() * 3;
+							if ((int) randomUpgradeVal == 0) {
+								bag[i - 1][5] += 3;
+							} else if ((int) randomUpgradeVal == 1) {
+								bag[i - 1][5] += 4;
+							} else if ((int) randomUpgradeVal == 2 || (int) randomUpgradeVal == 3) {
+								bag[i - 1][5] += 5;
+							}
+						}
+						else if ((int) randomUpgrade == 3 || (int) randomUpgrade == 4) {
+							double randomUpgradeVal = Math.random() * 3;
+							if ((int) randomUpgradeVal == 0) {
+								bag[i - 1][6] += 3;
+							} else if ((int) randomUpgradeVal == 1) {
+								bag[i - 1][6] += 4;
+							} else if ((int) randomUpgradeVal == 2 || (int) randomUpgradeVal == 3) {
+								bag[i - 1][6] += 5;
+							}
+						}
+					}
+					break;
+				}
 			}
 		}
 	}
