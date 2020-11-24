@@ -74,14 +74,14 @@ public class ActionExample {
 		}
 		System.out.println();
 		
-//		ActionExample m1 = new ActionExample("홍길동");
-//		ActionExample m2 = new ActionExample("박동수");
-//		ActionExample m3 = new ActionExample("김민수");
-//		ActionExample[] members = {m1, m2, m3};
+		ActionExample m1 = new ActionExample("홍길동");
+		ActionExample m2 = new ActionExample("박동수");
+		ActionExample m3 = new ActionExample("김민수");
+		ActionExample[] members = {m1, m2, m3};
 //		Arrays.sort(members);
-//		for(int i=0; i<members.length; i++) {
-//			System.out.println("members["+i+"].name="+members[i].name);
-//		}
+		for(int i=0; i<members.length; i++) {
+			System.out.println("members["+i+"].name="+members[i].name);
+		}
 				
 	}
 
