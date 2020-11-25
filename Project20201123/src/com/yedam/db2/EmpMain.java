@@ -65,7 +65,7 @@ public class EmpMain {
 			} else if (selectNo == 4) {
 				System.out.print("수정할 사원번호 : ");
 				int employeeId = scn.nextInt();
-				String enterY = scn.nextLine();
+				enterX = scn.nextLine();
 				System.out.print("수정할 이메일: ");
 				String email = scn.nextLine();
 				System.out.print("수정할 연락처: ");
@@ -73,7 +73,7 @@ public class EmpMain {
 				System.out.print("수정할 월급: ");
 				String salary = scn.nextLine();
 
-				if (salary == null || salary.equals(""))
+				if (salary == null || salary.equals("")) {
 					salary = "0";// parseInt에는 null값 못들어가서 0넣고 parseInt한다.
 				int sal = Integer.parseInt(salary);//한 줄이라 {}안 씀
 
@@ -84,7 +84,7 @@ public class EmpMain {
 				vo.setSalary(sal);//String인 salary를 Integer.parseInt()써서 int로 바꿔줌
 
 				service.updateEmp(vo);
-
+				}
 			} else if (selectNo == 5) {
 				System.out.print("삭제할 사원번호 : ");
 				int empId = scn.nextInt();
