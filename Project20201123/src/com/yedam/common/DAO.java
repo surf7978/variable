@@ -1,4 +1,4 @@
-package com.yedam.db;
+package com.yedam.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmpDAO {
+import com.yedam.db.Employee;
+
+public class DAO {
 	Connection conn = getConnection();
 
 	public void insertEmployee(Employee emp) {
