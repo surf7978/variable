@@ -76,7 +76,7 @@ public class EmpMain {
 				if (salary == null || salary.equals("")) {
 					salary = "0";// parseInt에는 null값 못들어가서 0넣고 parseInt한다.
 				int sal = Integer.parseInt(salary);//한 줄이라 {}안 씀
-
+				//parseInt() 문자열을 정수로 바꾸고 싶을때
 				EmployeeVO vo = new EmployeeVO();
 				vo.setEmployeeId(employeeId);
 				vo.setEmail(email);

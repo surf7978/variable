@@ -102,8 +102,12 @@ public class EmployeeVO {
 	}
 
 	public void showEmpInfo() {
-		System.out.println("사원번호: " + employeeId + ", 이름: " + firstName + " " + lastName + ", email: " + email
-				+ ", 연락처: " + phoneNumber + ", 입사일: " + hireDate + ", 업무: " + jobId + ", 월급: " + salary);
+		System.out.println("사원번호: " + employeeId //
+				+ ", 이름: " + firstName + " " + lastName //
+				+ ", email: " + email //
+				+ ", 연락처: " + phoneNumber // 
+				+ ", 입사일: " + hireDate // 
+				+ ", 업무: " + jobId + ", 월급: " + salary);
 	}
 
 	public int getDepartmentId() {
@@ -139,7 +143,9 @@ public class EmployeeVO {
 	}
 
 	public void showDepartmentInfo() {
-		System.out.println("부서번호: " + departmentId + ", 부서이름: " + departmentName + ", 관리번호: " + managerId + ", 지역번호: "
-				+ locationId);
+		System.out.println("부서번호: " + departmentId // 
+				+ ", 부서이름: " + departmentName //
+				+ ", 관리번호: " + managerId //
+				+ ", 지역번호: " + locationId);//
 	}
 }
