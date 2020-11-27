@@ -11,7 +11,7 @@ public class BoardMain {
 	public static void main(String[]args) {
 		Scanner scn = new Scanner(System.in);
 		
-		BoardService service = new BoardServicelmpl();
+		Exam06 service = new Exam06();
 
 		while (true) {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");

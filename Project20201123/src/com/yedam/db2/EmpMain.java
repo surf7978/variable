@@ -65,7 +65,6 @@ public class EmpMain {
 			} else if (selectNo == 4) {
 				System.out.print("수정할 사원번호 : ");
 				int employeeId = scn.nextInt();
-<<<<<<< HEAD
 				String enterY = scn.nextLine();
 				System.out.print("수정할 이메일: ");
 				String email = scn.nextLine();
@@ -86,28 +85,28 @@ public class EmpMain {
 
 				service.updateEmp(vo);
 
-=======
+
 				enterX = scn.nextLine();
 				System.out.print("수정할 이메일: ");
-				String email = scn.nextLine();
+				String email1 = scn.nextLine();
 				System.out.print("수정할 연락처: ");
-				String phoneNumber = scn.nextLine();
+				String phoneNumber1 = scn.nextLine();
 				System.out.print("수정할 월급: ");
-				String salary = scn.nextLine();
+				String salary1 = scn.nextLine();
 
 				if (salary == null || salary.equals("")) {
 					salary = "0";// parseInt에는 null값 못들어가서 0넣고 parseInt한다.
-				int sal = Integer.parseInt(salary);//한 줄이라 {}안 씀
+				int sal1 = Integer.parseInt(salary);//한 줄이라 {}안 씀
 
-				EmployeeVO vo = new EmployeeVO();
+				EmployeeVO vo1 = new EmployeeVO();
 				vo.setEmployeeId(employeeId);
-				vo.setEmail(email);
-				vo.setPhoneNumber(phoneNumber);
-				vo.setSalary(sal);//String인 salary를 Integer.parseInt()써서 int로 바꿔줌
+				vo.setEmail(email1);
+				vo.setPhoneNumber(phoneNumber1);
+				vo.setSalary(sal1);//String인 salary를 Integer.parseInt()써서 int로 바꿔줌
 
 				service.updateEmp(vo);
 				}
->>>>>>> branch 'master' of https://github.com/surf7978/variable.git
+
 			} else if (selectNo == 5) {
 				System.out.print("삭제할 사원번호 : ");
 				int empId = scn.nextInt();
