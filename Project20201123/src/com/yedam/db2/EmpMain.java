@@ -65,7 +65,7 @@ public class EmpMain {
 			} else if (selectNo == 4) {
 				System.out.print("수정할 사원번호 : ");
 				int employeeId = scn.nextInt();
-				enterX = scn.nextLine();
+				String enterY = scn.nextLine();
 				System.out.print("수정할 이메일: ");
 				String email = scn.nextLine();
 				System.out.print("수정할 연락처: ");
@@ -73,7 +73,7 @@ public class EmpMain {
 				System.out.print("수정할 월급: ");
 				String salary = scn.nextLine();
 
-				if (salary == null || salary.equals("")) {
+				if (salary == null || salary.equals(""))
 					salary = "0";// parseInt에는 null값 못들어가서 0넣고 parseInt한다.
 				int sal = Integer.parseInt(salary);//한 줄이라 {}안 씀
 				//parseInt() 문자열을 정수로 바꾸고 싶을때
@@ -84,7 +84,29 @@ public class EmpMain {
 				vo.setSalary(sal);//String인 salary를 Integer.parseInt()써서 int로 바꿔줌
 
 				service.updateEmp(vo);
+
+
+				enterX = scn.nextLine();
+				System.out.print("수정할 이메일: ");
+				String email1 = scn.nextLine();
+				System.out.print("수정할 연락처: ");
+				String phoneNumber1 = scn.nextLine();
+				System.out.print("수정할 월급: ");
+				String salary1 = scn.nextLine();
+
+				if (salary == null || salary.equals("")) {
+					salary = "0";// parseInt에는 null값 못들어가서 0넣고 parseInt한다.
+				int sal1 = Integer.parseInt(salary);//한 줄이라 {}안 씀
+
+				EmployeeVO vo1 = new EmployeeVO();
+				vo.setEmployeeId(employeeId);
+				vo.setEmail(email1);
+				vo.setPhoneNumber(phoneNumber1);
+				vo.setSalary(sal1);//String인 salary를 Integer.parseInt()써서 int로 바꿔줌
+
+				service.updateEmp(vo);
 				}
+
 			} else if (selectNo == 5) {
 				System.out.print("삭제할 사원번호 : ");
 				int empId = scn.nextInt();
