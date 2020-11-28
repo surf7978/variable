@@ -3,17 +3,112 @@ package test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-
 public class Exam07 {
+	static int board_no;
+	static String title;
+	static String content;
+	static String writer;
+	static String creation_date;
+
+	static Scanner scn = new Scanner(System.in);
+	static Connection conn = Exam07.getConnection();
+	static PreparedStatement psmt;
+	static ResultSet rs;
+	static String sql;
+
+	public Exam07() {
+
+	}
+
+	public Exam07(int board_no, String title, String content, String writer, String creation_date) {
+		this.board_no = board_no;
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.creation_date = creation_date;
+	}
+
+	public static int getBoard_no() {
+		return board_no;
+	}
+
+	public static void setBoard_no(int board_no) {
+		Exam07.board_no = board_no;
+	}
+
+	public static String getTitle() {
+		return title;
+	}
+
+	public static void setTitle(String title) {
+		Exam07.title = title;
+	}
+
+	public static String getContent() {
+		return content;
+	}
+
+	public static void setContent(String content) {
+		Exam07.content = content;
+	}
+
+	public static String getWriter() {
+		return writer;
+	}
+
+	public static void setWriter(String writer) {
+		Exam07.writer = writer;
+	}
+
+	public static String getCreation_date() {
+		return creation_date;
+	}
+
+	public static void setCreation_date(String creation_date) {
+		Exam07.creation_date = creation_date;
+	}
+
+	public void showInfo() {
+		System.out.println("글번호: " + board_no //
+				+ ", 글제목: " + title //
+				+ ", 글내용: " + content //
+				+ ", 작성자: " + writer//
+				+ ", 작성일: " + creation_date);
+	}
+
+	public static List getBoardList() {
+		conn = Exam07.getConnection();
+		sql = "select * from board order by 1";
+		List list = new ArrayList();
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				Exam07 vo = new Exam07();
+				vo.setBoard_no(rs.getInt("board_no"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContent(rs.getString("content"));
+				vo.setWriter(rs.getString("writer"));
+				vo.setCreation_date(rs.getString("creation_date"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			String user = "hr";
-			String pw = "hr";
+			String user = "oracle";
+			String pw = "oracle";
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -34,11 +129,8 @@ public class Exam07 {
 
 	public static void main(String[] args) {
 
-		Scanner scn = new Scanner(System.in);
-		Connection conn = Exam07.getConnection();
-		PreparedStatement psmt;
-		String sql;
-
+		Exam07 service = new Exam07();
+		
 		while (true) {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println("| 1.등록 | 2.수정 | 3.삭제 | 4.전체목록 | 5.종료  |");
@@ -47,6 +139,7 @@ public class Exam07 {
 			int select = scn.nextInt();
 			String enterX = scn.nextLine();
 
+			//1.등록
 			if (select == 1) {
 				System.out.print("글번호 입력: ");
 				int boardNo = scn.nextInt();
@@ -72,9 +165,10 @@ public class Exam07 {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-
-			} else if (select == 2) {
-				System.out.print("수정할 번호 : ");
+			} 
+			//2.수정
+			else if (select == 2) {
+				System.out.print("수정할 글번호 : ");
 				int boardNo = scn.nextInt();
 				enterX = scn.nextLine();
 				System.out.print("제목 입력: ");
@@ -98,8 +192,10 @@ public class Exam07 {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-			} else if (select == 3) {
-				System.out.print("삭제할 번호 : ");
+			} 
+			//3.삭제
+			else if (select == 3) {
+				System.out.print("삭제할 글번호 : ");
 				int deleteNo = scn.nextInt();
 
 				sql = "delete from board where board_no= " + deleteNo;
@@ -112,23 +208,21 @@ public class Exam07 {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-			} else if (select == 4) {
-				sql = "select * from board";
-
-				try {
-					PreparedStatement psmt1 = conn.prepareStatement(sql);
-					psmt1.executeUpdate();
-					System.out.println(sql);
-					
-				} catch (SQLException e) {
-					e.printStackTrace();
+			} 
+			//4.전체목록
+			else if (select == 4) {
+				List list = service.getBoardList();
+				for (Object vo : list) {
+					Exam07 brd = (Exam07) vo;
+					brd.showInfo();
 				}
-				
-			} else if (select == 5) {
-				System.out.println("프로그램 종료");
+			} 
+			//5.종료
+			else if (select == 5) {
 				break;
 			}
-		}
+		}// while
+		System.out.println("프로그램 종료");
 	}// main
 
 }// class
