@@ -16,7 +16,10 @@ public class SetExample2 {
 		Iterator<Person> iter = persons.iterator();
 		while(iter.hasNext()) {
 			Person person = iter.next();
-			System.out.println(person.toString()); //출력하면 주소값이 4개 나옴
+			System.out.println(iter); //출력하면 주소값이 4개 나옴
+			System.out.println(person);
+			System.out.println(person.toString());
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			//들어가있는 값은 "Hong"으로 같지만 인스턴스 (주소값?) 은 다르다.
 			
 			//Person에 hashcode 랑 equals 추가
