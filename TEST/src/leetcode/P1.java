@@ -37,8 +37,6 @@ public class P1 {
 		return x;
 	}
 	public static void main(String[] args) {
-		reverse a = new reverse();
-		int x = 123;
-		System.out.println(x.reverse());
+		System.out.println(reverse(123));
 	}
 }
