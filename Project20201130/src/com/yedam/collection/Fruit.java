@@ -39,12 +39,12 @@ public class Fruit {
 //		
 //		//이름이랑 가격이 같을 경우 중복제거
 //		return this.name.equals(fruit.name) && this.price == fruit.price;
-	
+//	
 //택2 	Fruit fruit = (Fruit) obj;
 //		boolean b1 = this.name.equals(fruit.name);
 //	  	boolean b2 = this.price == fruit.price;
 //		return b1 && b2;
-	
+//	
 //	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class Fruit {
 		
 //		boolean b1 = this.name.length() == fruit.name.length();
 //		boolean b2 = this.price == fruit.price;
-		//위에 public int hashCode() 도 바꿔줘야함
+//		//위에 public int hashCode() 도 바꿔줘야함
 //		return b1 && b2;
 		
 	}
