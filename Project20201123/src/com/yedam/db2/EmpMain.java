@@ -1,11 +1,9 @@
 package com.yedam.db2;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 
 public class EmpMain {
 
@@ -17,9 +15,9 @@ public class EmpMain {
 
 		while (true) {
 
-			System.out.println("--------------------------------------------");
-			System.out.println("| 1.전체조회 | 2.검색 | 3.입력 | 4.수정 | 5.삭제 |");
-			System.out.println("--------------------------------------------");
+			System.out.println("----------------------------------------------------------------");
+			System.out.println("| 1.전체조회 | 2.검색 | 3.입력 | 4.수정 | 5.삭제 | 6.종료 | 7.부서별조회 |");
+			System.out.println("----------------------------------------------------------------");
 			System.out.print(" 선택 >> ");
 			int selectNo = scn.nextInt();
 			String enterX = scn.nextLine();
@@ -75,16 +73,15 @@ public class EmpMain {
 
 				if (salary == null || salary.equals(""))
 					salary = "0";// parseInt에는 null값 못들어가서 0넣고 parseInt한다.
-				int sal = Integer.parseInt(salary);//한 줄이라 {}안 씀
-				//parseInt() 문자열을 정수로 바꾸고 싶을때
+				int sal = Integer.parseInt(salary);// 한 줄이라 {}안 씀
+				// parseInt() 문자열을 정수로 바꾸고 싶을때
 				EmployeeVO vo = new EmployeeVO();
 				vo.setEmployeeId(employeeId);
 				vo.setEmail(email);
 				vo.setPhoneNumber(phoneNumber);
-				vo.setSalary(sal);//String인 salary를 Integer.parseInt()써서 int로 바꿔줌
+				vo.setSalary(sal);// String인 salary를 Integer.parseInt()써서 int로 바꿔줌
 
 				service.updateEmp(vo);
-
 
 				enterX = scn.nextLine();
 				System.out.print("수정할 이메일: ");
@@ -96,28 +93,38 @@ public class EmpMain {
 
 				if (salary == null || salary.equals("")) {
 					salary = "0";// parseInt에는 null값 못들어가서 0넣고 parseInt한다.
-				int sal1 = Integer.parseInt(salary);//한 줄이라 {}안 씀
+					int sal1 = Integer.parseInt(salary);// 한 줄이라 {}안 씀
 
-				EmployeeVO vo1 = new EmployeeVO();
-				vo.setEmployeeId(employeeId);
-				vo.setEmail(email1);
-				vo.setPhoneNumber(phoneNumber1);
-				vo.setSalary(sal1);//String인 salary를 Integer.parseInt()써서 int로 바꿔줌
+					EmployeeVO vo1 = new EmployeeVO();
+					vo.setEmployeeId(employeeId);
+					vo.setEmail(email1);
+					vo.setPhoneNumber(phoneNumber1);
+					vo.setSalary(sal1);// String인 salary를 Integer.parseInt()써서 int로 바꿔줌
 
-				service.updateEmp(vo);
+					service.updateEmp(vo);
 				}
 
 			} else if (selectNo == 5) {
 				System.out.print("삭제할 사원번호 : ");
 				int empId = scn.nextInt();
-				
+
 				service.deleteEmp(empId);
 
 			} else if (selectNo == 6) {
 				System.out.println("<<프로그램 종료>>");
 				break;
 
+			} else if (selectNo == 7) {
+				System.out.print("조회할 부서명 : ");
+				String dept = scn.nextLine();
+				
+				List<EmployeeVO> list = service.getDeptList(dept);
+				for(Object vo : list) {
+					((EmployeeVO) vo).showEmpInfo();
+					((EmployeeVO) vo).showDepartmentInfo();
+				}
 			}
+
 		}
 	}
 }

@@ -16,6 +16,22 @@ public class EmployeeVO {
 	private String locationId;
 
 
+	
+	public EmployeeVO(int employeeId, String firstName, String lastName, String email, String phoneNumber,
+			String hireDate, String jobId, int salary, int departmentId, String managerId) {
+		super();
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.hireDate = hireDate;
+		this.jobId = jobId;
+		this.salary = salary;
+		this.departmentId = departmentId;
+		this.managerId = managerId;
+	}
+
 	public EmployeeVO(int employeeId) {
 		this.employeeId = employeeId;
 	}
@@ -144,8 +160,8 @@ public class EmployeeVO {
 
 	public void showDepartmentInfo() {
 		System.out.println("부서번호: " + departmentId // 
-				+ ", 부서이름: " + departmentName //
+				/*+ ", 부서이름: " + departmentName*/ //
 				+ ", 관리번호: " + managerId //
-				+ ", 지역번호: " + locationId);//
+				/*+ ", 지역번호: " + locationId*/);//
 	}
 }

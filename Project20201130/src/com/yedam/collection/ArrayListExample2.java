@@ -16,6 +16,14 @@ public class ArrayListExample2 {
 		System.out.println("olleH".length());
 		System.out.println("-------");
 		
+		List<String> olist = new ArrayList();
+		//제네릭을 선언해주면 못 넣음olist.add(10);
+		olist.add("Hello");
+		for(Object str : olist) {
+			String s = (String) str;
+			System.out.println(str);
+		}
+		System.out.println("-------");
 		
 		List<String> list = new ArrayList<>();
 		list.add(new String("Hello"));

@@ -119,14 +119,45 @@ public class EmpDAO {
 	// 한건삭제
 	public void deleteEmp(int empId) {
 		conn = DAO.getConnection();
-		sql = "DELETE FROM emp1 WHERE employee_id = "+empId;
+		sql = "DELETE FROM emp1 WHERE employee_id = " + empId;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.executeUpdate();//이거 없으면 업데이트 안됨
+			pstmt.executeUpdate();// 이거 없으면 업데이트 안됨
 			System.out.println(sql);
 			System.out.println(empId + "번 사원 삭제됨");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<EmployeeVO> getDeptList(String dept) {
+		conn = DAO.getConnection();
+		sql = "select * from emp1 where department_id = "//
+				+ "(select department_id from departments where department_name = '" //
+				+ dept + "')";
+		List<EmployeeVO> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			System.out.println(sql);
+			while (rs.next()) {
+				EmployeeVO vo = new EmployeeVO();
+				vo.setEmployeeId(rs.getInt("employee_id"));
+				vo.setFirstName(rs.getString("first_name"));
+				vo.setLastName(rs.getString("last_name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setPhoneNumber(rs.getString("phone_number"));
+				vo.setHireDate(rs.getString("hire_date"));
+				vo.setJobId(rs.getString("job_id"));
+				vo.setSalary(rs.getInt("salary"));
+
+				vo.setDepartmentId(rs.getInt("department_id"));
+				vo.setManagerId(rs.getString("manager_id"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
