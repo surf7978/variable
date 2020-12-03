@@ -17,13 +17,13 @@ public class InterfaceExample3 {
 		//3.화면출력(정사각형 넓이를 구하는 기능 구현)
 		
 		//1.원의 넓이
-		MyFunctionInterface a = (radius) -> System.out.println(radius*radius*3.14);
+		MyFunctionInterface a = radius -> System.out.println(radius*radius*3.14);
 		a.run(5);
 		//2.삼각형의 넓이
 		MyFunctionInterface1 b = (c, h) -> System.out.println(0.5*c*h);
 		b.run(5, 4);
 		//3.정사각형 넓이
-		a =(radius) -> System.out.println(radius*radius);
+		a = radius -> System.out.println(radius*radius);
 		a.run(3);
 		System.out.println("------------------");
 		

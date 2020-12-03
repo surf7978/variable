@@ -27,7 +27,7 @@ public class SupplierExample {
 			}
 			
 		};
-		//System.out.println(intSup.get());//되긴되는데 오류남
+		System.out.println(intSup.get());//되긴되는데 오류남
 		
 		IntSupplier intSupp=new IntSupplier() {
 

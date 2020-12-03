@@ -43,7 +43,7 @@ public class FunctionExample {
 			}
 
 		};
-		//System.out.println(func.apply("Hello")); // apply로 출력
+		System.out.println(func.apply("Hello")); // apply로 출력
 
 		BiFunction<String, String, Integer> biFunc = null;
 		System.out.println("[학생이름]");
