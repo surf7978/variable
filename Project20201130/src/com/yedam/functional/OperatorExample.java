@@ -41,6 +41,8 @@ public class OperatorExample {
 				return left < right ? left : right;
 		});
 		System.out.println("제일 작은 값 : "+maxValue);
+		
+		
 	}
 
 }
