@@ -65,6 +65,11 @@ public class LambdaExample {
 //		Q3(t -> t.getSex().equals("MALE"));
 //		// 4.여학생의 평균 : 출력 (정답 : 82.5점 나와야함)
 
+		
+		
+		
+		
+		
 		// 반복문(반복자) : 스트림(반복자)
 		// 스트림생성 >> 소진
 

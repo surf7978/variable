@@ -1,6 +1,9 @@
 package com.yedam.board;
+
+import java.util.List;
+
 //VO클래스
-public class BoardVO {
+public class BoardVO implements BoardService {
 	int boardNo;
 	String title;
 	String content;
@@ -72,6 +75,36 @@ public class BoardVO {
 	public void showInfo() {
 		System.out.println("번호: " + boardNo + ", 제목: " + title + ", 내용: " + content
 				+ ", 작성자: " + writer + ", 작성일: " + creation_date);
+	}
+
+	@Override
+	public List getBoardList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BoardVO getBoard(int menu2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertBoard(BoardVO empVo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteBoard(int menu4) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateBoard(BoardVO empVo) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

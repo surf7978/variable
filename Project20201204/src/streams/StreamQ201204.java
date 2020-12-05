@@ -8,49 +8,101 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
-//emp1에 50번 부서
-//1. salary 10000이상인 사원 출력 (사원번호 이름 메일 급여)
-//2. 선적부서 급여 합계(평균)
-//3. 급여가 5000~10000인 사원번호 이름 메일 급여
 public class StreamQ201204 {
-	static int employee_id;
-	static int department_id;
-	static int salary;
-	static String firstName;
-	static String lastName;
-	static String email;
+	private int employeeId;
+	private int departmentId;
+	private int salary;
+	private String firstName;
+	private String lastName;
+	private String email;
 
-	public StreamQ201204() {
-
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
-	public StreamQ201204(int employee_id, int department_id, int salary, String firstName, String lastName,
-			String email) {
-		this.employee_id = employee_id;
-		this.department_id = department_id;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public StreamQ201204(int employeeId, int departmentId, int salary //
+			, String firstName, String lastName, String email) { //
+		super();
+		this.employeeId = employeeId;
+		this.departmentId = departmentId;
 		this.salary = salary;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-
+	}
+	
+	public StreamQ201204() {
+		
 	}
 
-	static Scanner scn = new Scanner(System.in);
-	static Connection conn = StreamQ201204.getConnection();
+	public void showInfo() {
+		System.out.println("사원번호: " + employeeId //
+				+ ", 부서번호: " + departmentId //
+				+ ", 이름: " + lastName + " " + firstName//
+				+ ", 급여: " + salary //
+				+ ", 이메일: " + email);
+	}
+	
+	static Connection conn = null;
 	static PreparedStatement psmt;
 	static ResultSet rs;
 	static String sql;
 
 	public static Connection getConnection() {
-		Connection conn = null;
 		try {
-			String user = "hr";
-			String pw = "hr";
+			String user = "oracle";
+			String pw = "oracle";
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -68,102 +120,23 @@ public class StreamQ201204 {
 		}
 		return conn;
 	}
-
 	
-	
-	public static int getEmployee_id() {
-		return employee_id;
-	}
-
-	public static void setEmployee_id(int employee_id) {
-		StreamQ201204.employee_id = employee_id;
-	}
-
-	public static int getDepartment_id() {
-		return department_id;
-	}
-
-	public static void setDepartment_id(int department_id) {
-		StreamQ201204.department_id = department_id;
-	}
-
-	public static int getSalary() {
-		return salary;
-	}
-
-	public static void setSalary(int salary) {
-		StreamQ201204.salary = salary;
-	}
-
-	public static String getFirstName() {
-		return firstName;
-	}
-
-	public static void setFirstName(String firstName) {
-		StreamQ201204.firstName = firstName;
-	}
-
-	public static String getLastName() {
-		return lastName;
-	}
-
-	public static void setLastName(String lastName) {
-		StreamQ201204.lastName = lastName;
-	}
-
-	public static String getEmail() {
-		return email;
-	}
-
-	public static void setEmail(String email) {
-		StreamQ201204.email = email;
-	}
-
-	public static void main(String[] args) {
-		
-		while (true) {
-			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-			System.out.println("| 1.급여 10000이상인 사원 | 2.선적부서 급여 합계 | 3.급여가 5000~10000인 사원 | 4.종료 |");
-			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-			System.out.print(" 선택 >> ");
-			int select = scn.nextInt();
-			String enterX = scn.nextLine();
-
-			// 1.급여 10000이상인 사원
-			if (select == 1) {
-				
-			}
-			// 2.선적부서 급여 합계
-			else if (select == 2) {
-				
-			}
-			// 3.급여가 5000~10000인 사원
-			else if (select == 3) {
-				
-			}
-			// 4.종료
-			else if (select == 4) {
-				break;
-			}
-		}
-	}
-
-	public static List getEmployeeList() {
+	public static List<StreamQ201204> getEmployeeList() {
 		conn = StreamQ201204.getConnection();
-		sql = "select * from board order by 1";
-		List list = new ArrayList();
+		sql = "select * from employees";
+		List<StreamQ201204> list = new ArrayList<StreamQ201204>();
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
-				StreamQ201204 vo = new StreamQ201204();
-				vo.setEmployee_id(rs.getInt("employee_id"));
-				vo.setDepartment_id(rs.getInt("department_id"));
-				vo.setSalary(rs.getInt("salary"));
-				vo.setFirstName(rs.getString("firstName"));
-				vo.setLastName(rs.getString("lastName"));
-				vo.setEmail(rs.getString("email"));
-				list.add(vo);
+				StreamQ201204 a = new StreamQ201204();
+				a.setEmployeeId(rs.getInt("employee_id"));
+				a.setDepartmentId(rs.getInt("department_id"));
+				a.setSalary(rs.getInt("salary"));
+				a.setFirstName(rs.getString("first_name"));
+				a.setLastName(rs.getString("last_name"));
+				a.setEmail(rs.getString("email"));
+				list.add(a);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,12 +144,79 @@ public class StreamQ201204 {
 		return list;
 	}
 	
-	public void showInfo() {
-		System.out.println("사원번호: " + employee_id //
-				+ ", 부서번호: " + department_id //
-				+ ", 급여: " + salary //
-				+ ", 이름: " + lastName+" "+firstName//
-				+ ", 이메일: " + email);
-	}
+	static List<StreamQ201204> list = 
+			
+			getEmployeeList();
 	
+//			Arrays.asList(
+//			new StreamQ201204(124, 50, 5800, "Kevin", "Mourgos", "KMOURGOS"), //
+//			new StreamQ201204(141, 50, 3500, "Trenna", "Rajs", "TRAJS"), //
+//			new StreamQ201204(142, 50, 3100, "Curtis", "Davies", "CDAVIES"), //
+//			new StreamQ201204(143, 50, 12600, "Randall", "Matos", "RMATOS"), //
+//			new StreamQ201204(144, 50, 12500, "Peter", "Vargas", "PVARGAS") //
+//						);
+
+	public static void main(String[] args) {
+		
+		Stream<StreamQ201204> stream = list.stream();
+		
+		// 1.salary 10000이상인 사원 출력 (사원번호 이름 메일 급여)
+		System.out.println("<50번 부서에 근무하는 사원 중 급여가 5000 이상인 사원목록>");
+		
+		stream.filter(new Predicate<StreamQ201204>() {
+			@Override
+			public boolean test(StreamQ201204 t) {
+				return t.getSalary() > 5000 //
+						&& t.getDepartmentId() > 49 && t.getDepartmentId() < 51;
+			}
+		}).forEach(new Consumer<StreamQ201204>() {
+			@Override
+			public void accept(StreamQ201204 a) {
+				a.showInfo();
+			}
+		});
+		
+		System.out.println("-------------------------------------------------------------------------");
+		
+		
+		
+		
+		// 2.선적부서(50번부서) 급여 합계(평균)
+		int sum = 
+		list.stream().filter(new Predicate<StreamQ201204>() {
+			@Override
+			public boolean test(StreamQ201204 t) {
+				return 49 < t.getDepartmentId() && t.getDepartmentId() < 51;
+			}
+		}).mapToInt(new ToIntFunction<StreamQ201204>() {
+			@Override
+			public int applyAsInt(StreamQ201204 value) {
+				return value.getSalary();
+			}
+		}).sum();
+		
+		System.out.println("50번 부서에서 근무하는 사원의 급여 총합 : "+sum);
+		
+		System.out.println("-------------------------------------------------------------------------");
+
+		
+		
+		// 3.급여가 5000~10000인 사원번호 이름 메일 급여
+		System.out.println("<급여가 5000~10000 사이인 사원목록>");
+		
+		stream = list.stream();
+		stream.filter(new Predicate<StreamQ201204>() {
+			@Override
+			public boolean test(StreamQ201204 t) {
+				return 5000 < t.getSalary() && t.getSalary() < 10000;
+			}
+		}).forEach(new Consumer<StreamQ201204>() {
+			@Override
+			public void accept(StreamQ201204 a) {
+				a.showInfo();
+			}
+		});
+		
+	}
+
 }
