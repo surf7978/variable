@@ -41,7 +41,7 @@ public class StreamExample5 {
 		
 		System.out.println(avg.orElse(0.0)); //값이 없으면 0.0으로 출력
 		
-		avg.ifPresent(new DoubleConsumer() { //ifPresent 값이 있으면 이걸로 출력
+		avg.ifPresent(new DoubleConsumer() { //ifPresent = 값이 있으면 이걸로 출력
 			@Override
 			public void accept(double value) {
 				System.out.println("급여평균 : "+avg);

@@ -55,8 +55,8 @@ public class CollectExample {
 				.sorted() //
 				.collect( //
 						Collectors.toMap( //
-								(t) -> t.getName() //
-								, (t) -> t.getScore()));
+								t -> t.getName() //
+								, t -> t.getScore()));
 		Set<String> set = map.keySet();
 		for (String key : set) {
 			System.out.println("Key : " + key + ", Value : " + map.get(key));
