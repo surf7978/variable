@@ -99,8 +99,8 @@ public class StreamQ201204 {
 
 	public static Connection getConnection() {
 		try {
-			String user = "oracle";
-			String pw = "oracle";
+			String user = "hr";
+			String pw = "hr";
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -146,7 +146,7 @@ public class StreamQ201204 {
 
 			getDBList();
 
-//			Arrays.asList(
+//테스트용 	Arrays.asList(
 //			new StreamQ201204(124, 50, 5800, "Kevin", "Mourgos", "KMOURGOS"), //
 //			new StreamQ201204(141, 50, 3500, "Trenna", "Rajs", "TRAJS"), //
 //			new StreamQ201204(142, 50, 3100, "Curtis", "Davies", "CDAVIES"), //
@@ -196,7 +196,7 @@ public class StreamQ201204 {
 				});
 				System.out.println();
 				
-				System.out.println("람다식으로 표현");
+				System.out.println("람다식으로 코딩");
 				stream = list.stream();
 				
 				System.out.println();
@@ -230,7 +230,7 @@ public class StreamQ201204 {
 				System.out.println(selectDepartment + "번 부서에서 근무하는 사원의 급여 총합 : " + sum);
 				System.out.println();
 				
-				System.out.println("람다식으로 표현");
+				System.out.println("람다식으로 코딩");
 				sum = list.stream().filter((t) -> selectDepartment == t.getDepartmentId()) //
 								   .mapToInt((v) -> v.getSalary()) //
 								   .sum(); 
@@ -260,7 +260,7 @@ public class StreamQ201204 {
 				System.out.println();
 				
 				System.out.println();
-				System.out.println("람다식으로 표현");
+				System.out.println("람다식으로 코딩");
 				
 				stream = list.stream();
 				stream.filter((t) -> 5000 <= t.getSalary() && t.getSalary() <= 10000) //
