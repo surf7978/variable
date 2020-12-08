@@ -35,7 +35,7 @@ public class StreamExample5 {
 		
 		//40번 부서가 없어서 에러가 남, 에러 안나게 값 없으면 다른 문구 출력되게 만들기 StreamExample5에서 할거임
 		OptionalDouble avg = list.stream() // .average는 OptionalDouble 타입이다.
-				.filter(t -> t.getDepartmentId() == 40) //
+				.filter(t -> t.getDepartmentId() == 50) //
 				.mapToInt(s -> s.getSalary()) //
 				.average();// .average는 OptionalDouble 타입이다.
 		
@@ -44,7 +44,7 @@ public class StreamExample5 {
 		avg.ifPresent(new DoubleConsumer() { //ifPresent = 값이 있으면 이걸로 출력
 			@Override
 			public void accept(double value) {
-				System.out.println("급여평균 : "+avg);
+				System.out.println("급여평균 : "+avg.getAsDouble()); //getAsDouble 안 붙여주면 optional
 			}
 		});;
 

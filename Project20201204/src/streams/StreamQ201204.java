@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
 
-public class StreamQ201204 {
+public class StreamQ201204 implements Comparable<StreamQ201204> {
 	private int employeeId;
 	private int departmentId;
 	private int salary;
@@ -91,7 +91,7 @@ public class StreamQ201204 {
 				+ "', 급여: " + salary //
 				+ ", 이메일: " + email + "@email.com");
 	}
-	
+
 	static Connection conn = null;
 	static PreparedStatement psmt;
 	static ResultSet rs;
@@ -142,6 +142,19 @@ public class StreamQ201204 {
 		return list;
 	}
 
+	//implements Comparable<StreamQ201204> 클래스에 이거 해줘야 compareTo 메소드랑 sorted 스트림 사용가능
+//	@Override
+//	public int compareTo(StreamQ201204 o) { //Salary 많은순으로 정렬
+//		return o.getSalary() - this.getSalary(); // 내림차순
+//													// 만약 this.getSalary()-o.getSalary()하면 오름차순
+//													// 오름차순 : 음수, 같다 : 0, 내림차순 : 양수
+//	}
+	
+	@Override
+	public int compareTo(StreamQ201204 o) { //LastName 알파벳순으로 정렬
+		return this.getLastName().compareTo(o.getLastName());
+	}
+	
 	static List<StreamQ201204> list =
 
 			getDBList();
@@ -159,7 +172,7 @@ public class StreamQ201204 {
 		Scanner scn = new Scanner(System.in);
 		boolean run = true;
 		Stream<StreamQ201204> stream = list.stream();
-		
+
 		System.out.println("<현재 등록된 DB>");
 		stream.forEach(new Consumer<StreamQ201204>() {
 			@Override
@@ -170,17 +183,19 @@ public class StreamQ201204 {
 		System.out.println();
 
 		while (run) {
-			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-			System.out.println("| 1.급여가 10000이상인 사원목록 | 2.선택한 부서에 근무하는 사원들의 급여 총합 | 3.급여가 5000~10000인 사원목록 |");
-			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-			System.out.print(" 선택 >>> ");
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.println("|  1.급여가 10000이상인 사원목록  |  2.선택한 부서에 근무하는 사원들의 급여 총합  |");
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.println("| 3.급여가 5000~10000인 사원목록 | 4.sorted()를 사용해서 성 알파벳 순으로 정렬 |");
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.print(" 메뉴 선택 >>> ");
 			int select = scn.nextInt();
 			String enterX = scn.nextLine();
 
 			if (select == 1) {
 				// 1.salary 10000이상인 사원 출력 (사원번호 이름 메일 급여)
 				stream = list.stream();
-				
+
 				System.out.println();
 				System.out.println("<급여가 10000 이상인 사원목록>");
 				stream.filter(new Predicate<StreamQ201204>() {
@@ -195,29 +210,28 @@ public class StreamQ201204 {
 					}
 				});
 				System.out.println();
-				
+
 				System.out.println("람다식으로 코딩");
 				stream = list.stream();
-				
+
 				System.out.println();
 				stream.filter((t) -> t.getSalary() > 10000) //
-				      .forEach((a) -> a.showInfo());
+						.forEach((a) -> a.showInfo());
 				System.out.println();
-				
+
 			} else if (select == 2) {
 				// 2.선적부서(50번부서) 급여 합계(평균)
 				System.out.print("조회할 부서번호 선택 >>> ");
 				int selectDepartment = scn.nextInt();
 				enterX = scn.nextLine();
-				
+
 				int sum = list.stream().filter(new Predicate<StreamQ201204>() {
 					@Override
 					public boolean test(StreamQ201204 t) {
 						return //
 //								(selectDepartment - 1) < t.getDepartmentId()
 //								&& t.getDepartmentId() < (selectDepartment + 1)
-								selectDepartment == t.getDepartmentId()
-								;
+						selectDepartment == t.getDepartmentId();
 					}
 				}).mapToInt(new ToIntFunction<StreamQ201204>() {
 					@Override
@@ -225,26 +239,26 @@ public class StreamQ201204 {
 						return value.getSalary();
 					}
 				}).sum();
-				
+
 				System.out.println();
 				System.out.println(selectDepartment + "번 부서에서 근무하는 사원의 급여 총합 : " + sum);
 				System.out.println();
-				
+
 				System.out.println("람다식으로 코딩");
 				sum = list.stream().filter((t) -> selectDepartment == t.getDepartmentId()) //
-								   .mapToInt((v) -> v.getSalary()) //
-								   .sum(); 
-				
+						.mapToInt((v) -> v.getSalary()) //
+						.sum();
+
 				System.out.println();
 				System.out.println(selectDepartment + "번 부서에서 근무하는 사원의 급여 총합 : " + sum);
 				System.out.println();
-				
+
 			} else if (select == 3) {
 				// 3.급여가 5000~10000인 사원번호 이름 메일 급여
-				
+
 				System.out.println();
 				System.out.println("<급여가 5000~10000 사이인 사원목록>");
-				
+
 				stream = list.stream();
 				stream.filter(new Predicate<StreamQ201204>() {
 					@Override
@@ -258,20 +272,29 @@ public class StreamQ201204 {
 					}
 				});
 				System.out.println();
-				
+
 				System.out.println();
 				System.out.println("람다식으로 코딩");
-				
+
 				stream = list.stream();
 				stream.filter((t) -> 5000 <= t.getSalary() && t.getSalary() <= 10000) //
-				      .forEach((a) -> a.showInfo());
+						.forEach((a) -> a.showInfo());
 				System.out.println();
-				
+
+			} else if (select == 4) {
+				// 4. stream().sorted()를 사용해서 salary가 많은 사람부터 출력
+				System.out.println();
+				System.out.println("<sorted()를 사용해서 급여를 내림차순으로 정렬>");
+				stream = list.stream();
+				stream.sorted() //
+						.forEach(a -> a.showInfo());
+				System.out.println();
+
 			} else {
 				System.out.println();
 				System.out.println("<프로그램 종료>");
 				break;
 			}
-		} //while
-	}//main
-}//class
+		} // while
+	}// main
+}// class
