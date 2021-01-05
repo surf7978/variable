@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>홈입니다.</title>
+</head>
+<body>
+	<h1>반갑습니다!!</h1>
+	<script>
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', 'home'); //home위치에있는거 get
+		xhtp.send();
+		xhtp.onload = function(){
+			console.log(xhtp.responseXML); 
+			let doc = xhtp.responseXML;//XML타입으로 가져옴
+			let ids = doc.getElementsByTagName('last_name');
+			console.log(ids[0].lastChild.nodeValue);//getElements라 배열임[0]번째있는 것 콘솔출력
+		}
+	</script>
+</body>
+</html>
