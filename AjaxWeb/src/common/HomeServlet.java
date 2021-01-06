@@ -42,12 +42,12 @@ public class HomeServlet extends HttpServlet {
 		for (EmployeeVO emp : list) {
 			xml += "<record>";
 			xml += "<empId>" + emp.getEmployeeId() + "</empId>"//
-					+ "<firstName>" + emp.getFirstName() + "</firstName>"//
-					+ "<lastName>" + emp.getLastName() + "</lastName>"//
+					+ "<first_Name>" + emp.getFirstName() + "</first_Name>"//
+					+ "<last_Name>" + emp.getLastName() + "</last_Name>"//
 					+ "<email>" + emp.getEmail() + "</email>"//
-					+ "<phoneNumber>" + emp.getPhoneNumber() + "</phoneNumber>"//
-					+ "<hireDate>" + emp.getHireDate() + "</hireDate>"//
-					+ "<jobId>" + emp.getJobId() + "</jobId>"//
+					+ "<phone_Number>" + emp.getPhoneNumber() + "</phone_Number>"//
+					+ "<hire_Date>" + emp.getHireDate() + "</hire_Date>"//
+					+ "<job_Id>" + emp.getJobId() + "</job_Id>"//
 					+ "<salary>" + emp.getSalary() + "</salary>";
 			xml += "</record>";
 		}

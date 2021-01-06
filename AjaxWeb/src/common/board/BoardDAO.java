@@ -60,14 +60,14 @@ public class BoardDAO {
 		List list = new ArrayList();
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			ResultSet rltS = psmt.executeQuery();
-			while(rltS.next()) {
+			ResultSet rs = psmt.executeQuery();
+			while(rs.next()) {
 				BoardVO vo =  new BoardVO();
-				vo.setBoardNo(rltS.getInt("board_no"));
-				vo.setTitle(rltS.getString("title"));
-				vo.setContent(rltS.getString("content"));
-				vo.setWriter(rltS.getString("writer"));
-				vo.setCreation_date(rltS.getString("creation_date"));
+				vo.setBoardNo(rs.getInt("board_no"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContent(rs.getString("content"));
+				vo.setWriter(rs.getString("writer"));
+				vo.setCreation_date(rs.getString("creation_date"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {

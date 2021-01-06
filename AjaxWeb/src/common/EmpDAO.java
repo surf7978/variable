@@ -29,8 +29,29 @@ public class EmpDAO {
 		}
 	} // end of 생성자
 	
+	public boolean deleteEmp(EmployeeVO vo) {
+		String sql = "delete from emp_temp where employee_id = ?"; //employees 지우면 안되니까 임시로 디벨로퍼에서 emp_temp만듬 create table emp_temp as select * from employees;
+		int r = 0;
+		try {
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getEmployeeId());
+			
+			r = psmt.executeUpdate(); //쿼리한거 업데이트 시키는 명령문
+			System.out.println(r + "건 삭제됨");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return r == 1 ? true : false;
+	}
+	
 	public List<EmployeeVO> getEmpList() {
-		String sql = "select * from employees";
+		String sql = "select * from emp_temp";
 		List<EmployeeVO> list = new ArrayList<>();
 		try {
 			PreparedStatement psmt =  conn.prepareStatement(sql);

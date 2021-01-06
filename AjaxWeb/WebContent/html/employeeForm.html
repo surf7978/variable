@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>html/employeeForm.html</title>
+		<script src="showPage.js"></script>
+	</head>
+	<body>
+		<div id="show"></div>
+		<script>
+			let xhtp = new XMLHttpRequest();
+			xhtp.open('get', '../home'); //home=Servlet파일명(내가 설정해준 것)의 경로를 지정해줘야함(../)
+			xhtp.send();
+			xhtp.onload = showPage;
+		</script>
+	</body>
+</html>
