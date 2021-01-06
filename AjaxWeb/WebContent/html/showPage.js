@@ -33,7 +33,7 @@ function titleRow(result){
 	//삭제 헤드
 	let thTag = document.createElement('th');
 	thTag.setAttribute('style', 'padding:10px; color:white; background-color: grey; text-align: center;');
-	let textNode = document.createTextNode("삭제");
+	let textNode = document.createTextNode("처리");
 	thTag.appendChild(textNode);
 	trTag.appendChild(thTag);
 		
@@ -72,7 +72,7 @@ function contentRow(result){
 		//삭제 내용
 		let button = document.createElement('button');
 		button.setAttribute('style', 'padding:10px; text-align: center;');
-		button.innerHTML = '처리';
+		button.innerHTML = '삭제';
 		
 		button.onclick = function(){
 			console.log(this.parentNode.parentNode.remove()); //this=buttonTag + parentNode=trTag + parentNode=tdTag + remove()=삭제

@@ -30,7 +30,8 @@ public class EmpDAO {
 	} // end of 생성자
 	
 	public boolean deleteEmp(EmployeeVO vo) {
-		String sql = "delete from emp_temp where employee_id = ?"; //employees 지우면 안되니까 임시로 디벨로퍼에서 emp_temp만듬 create table emp_temp as select * from employees;
+		String sql = "delete from emp_temp where employee_id = ?"; 
+		//employees 지우면 안되니까 임시로 디벨로퍼에서 emp_temp만듬 create table emp_temp as select * from employees;
 		int r = 0;
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);
@@ -48,7 +49,7 @@ public class EmpDAO {
 			}
 		}
 		return r == 1 ? true : false;
-	}
+	}// end of deleteEmp()
 	
 	public List<EmployeeVO> getEmpList() {
 		String sql = "select * from emp_temp";
@@ -79,4 +80,33 @@ public class EmpDAO {
 		}
 		return list;
 	}// end of getEmpList()
+	
+	public boolean insertEmp(EmployeeVO vo) {
+		String sql = "insert into emp_temp"//
+				+ " (employee_id, first_name, last_name, email, phone_number,salary, hire_date, job_id)"//
+				+ " values(employees_seq.nextval,?,?,?,?,?,sysdate,?)";
+		//employees_seq.nextval 기존에 있는 번호의 다음번호
+		int r = 0;
+		try {
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getFirstName());
+			psmt.setString(2, vo.getLastName());
+			psmt.setString(3, vo.getEmail());
+			psmt.setString(4, vo.getPhoneNumber());
+			psmt.setInt(5, vo.getSalary());
+			psmt.setString(6, vo.getJobId()); //5아님 걍 ???? 순서대로 1234임
+			r = psmt.executeUpdate();
+			System.out.println(r+"건이 입력됨");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return r == 1 ? true : false;
+	}
+	
 } //end of class
