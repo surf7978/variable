@@ -21,9 +21,6 @@ function showPage() {
 	document.getElementById('show').appendChild(tableTag);
 }
 
-function FastdelFunc(){ //입력하자마자 지우는용
-	
-}
 
 function delFunc(){
 	console.log(this);//this 펑션을 불러오는 주체
@@ -68,16 +65,33 @@ function contentRow(result) {
 	let trTags = [];
 	for (let i = 0; i < result.length; i++) {
 		let trTag = document.createElement('tr');
+		trTag.setAttribute('id', 'result'+i);
 		trTag.onmouseover = function() {
 			trTag.style.backgroundColor = 'yellow';
-		};
+			let showfName = document.getElementById('clickfName');
+			showfName.innerHTML = result[i].childNodes[1].childNodes[0].nodeValue;
+			let showlName = document.getElementById('clicklName');
+			showlName.innerHTML = result[i].childNodes[2].childNodes[0].nodeValue;
+			let showemail = document.getElementById('clickemail');
+			showemail.innerHTML = result[i].childNodes[3].childNodes[0].nodeValue;
+			let showpNumber = document.getElementById('clickpNumber');
+			showpNumber.innerHTML = result[i].childNodes[4].childNodes[0].nodeValue;
+			let showhireDate = document.getElementById('clickhireDate');
+			showhireDate.innerHTML = result[i].childNodes[5].childNodes[0].nodeValue;
+			let showjId = document.getElementById('clickjId');
+			showjId.innerHTML = result[i].childNodes[6].childNodes[0].nodeValue;
+			let showsalary = document.getElementById('clicksalary');
+			showsalary.innerHTML = result[i].childNodes[7].childNodes[0].nodeValue;
+		}
 		trTag.onmouseout = function() {
 			trTag.style.backgroundColor = 'white';
-		};
+		}
 		for (let j = 0; j < result[i].childNodes.length; j++) {
 			let tdTag = document.createElement('td');
 			tdTag.setAttribute('style', 'padding:10px; text-align: center;');
+			tdTag.setAttribute('id', 'result'+i+'childNodes'+j);
 			let textNode = document.createTextNode(result[i].childNodes[j].childNodes[0].nodeValue);
+			
 			tdTag.appendChild(textNode);
 			trTag.appendChild(tdTag);
 		}
@@ -85,5 +99,4 @@ function contentRow(result) {
 	}
 	return trTags;
 }
-
 

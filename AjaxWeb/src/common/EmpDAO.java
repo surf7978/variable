@@ -52,7 +52,7 @@ public class EmpDAO {
 	}// end of deleteEmp()
 	
 	public List<EmployeeVO> getEmpList() {
-		String sql = "select * from emp_temp";
+		String sql = "select * from emp_temp order by 1";
 		List<EmployeeVO> list = new ArrayList<>();
 		try {
 			PreparedStatement psmt =  conn.prepareStatement(sql);
@@ -81,22 +81,48 @@ public class EmpDAO {
 		return list;
 	}// end of getEmpList()
 	
-	public boolean insertEmp(EmployeeVO vo) {
-		String sql = "insert into emp_temp"//
+	public EmployeeVO insertEmp(EmployeeVO vo) {
+		String sql1 = "select employees_seq.nextval from dual";
+		String sql2 = "select * from emp_temp where employee_id = ?";
+		String sql3 = "insert into emp_temp"//
 				+ " (employee_id, first_name, last_name, email, phone_number,salary, hire_date, job_id)"//
-				+ " values(employees_seq.nextval,?,?,?,?,?,sysdate,?)";
-		//employees_seq.nextval 기존에 있는 번호의 다음번호
+				+ " values(?,?,?,?,?,?,sysdate,?)";
+		System.out.println(vo);
+		//employees_seq.nextval 기존에 있는 번호의 다음번호 근데 이걸 1번콜름에 넣으면 밖으로 가져올 방법이 없음
+		//그래서 쿼리 3번함
 		int r = 0;
+		String newSeq = null;
+		EmployeeVO newVO = new EmployeeVO();
 		try {
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getFirstName());
-			psmt.setString(2, vo.getLastName());
-			psmt.setString(3, vo.getEmail());
-			psmt.setString(4, vo.getPhoneNumber());
-			psmt.setInt(5, vo.getSalary());
-			psmt.setString(6, vo.getJobId()); //5아님 걍 ???? 순서대로 1234임
+			PreparedStatement psmt = conn.prepareStatement(sql1);
+			ResultSet rs = psmt.executeQuery();
+			if(rs.next()) {
+				newSeq = rs.getString(1);//1=첫번째 콜름=employee_id 이걸로 employees_seq.nextval된 숫자 가져옴
+			}
+			psmt = conn.prepareStatement(sql3);
+			psmt.setString(1, newSeq);
+			psmt.setString(2, vo.getFirstName());
+			psmt.setString(3, vo.getLastName());
+			psmt.setString(4, vo.getEmail());
+			psmt.setString(5, vo.getPhoneNumber());
+			psmt.setInt(6, vo.getSalary()); //sysdate자리 6번아님 = 걍 ???????순서대로 1234567임
+			psmt.setString(7, vo.getJobId()); 
 			r = psmt.executeUpdate();
 			System.out.println(r+"건이 입력됨");
+			
+			psmt = conn.prepareStatement(sql2);
+			psmt.setString(1, newSeq);
+			rs=psmt.executeQuery();
+			if(rs.next()) {
+				newVO.setEmployeeId(rs.getInt("employee_id"));
+				newVO.setFirstName(rs.getString("first_name"));
+				newVO.setLastName(rs.getString("last_name"));
+				newVO.setEmail(rs.getString("email"));
+				newVO.setPhoneNumber(rs.getString("phone_number"));
+				newVO.setHireDate(rs.getString("hire_date"));
+				newVO.setJobId(rs.getString("job_id"));
+				newVO.setSalary(rs.getInt("salary"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -106,7 +132,7 @@ public class EmpDAO {
 				e.printStackTrace();
 			}
 		}
-		return r == 1 ? true : false;
+		return newVO;
 	}
 	
 } //end of class
