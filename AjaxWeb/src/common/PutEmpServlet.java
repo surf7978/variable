@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/PutEmpServlet")
 public class PutEmpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,16 +18,16 @@ public class PutEmpServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String empId = request.getParameter("empId");
-		String fName = request.getParameter("fName");//title에 있는 값을 가져옴
+		String fName = request.getParameter("fName");// title에 있는 값을 가져옴
 		String lName = request.getParameter("lName");
 		String email = request.getParameter("email");
 		String pNumber = request.getParameter("pNumber");
 		String hDate = request.getParameter("hDate");
 		String jId = request.getParameter("jId");
 		String salary = request.getParameter("salary");
-		
+
 		int salary1 = Integer.parseInt(salary);
-		
+
 		EmployeeVO vo = new EmployeeVO();
 		vo.setFirstName(fName);
 		vo.setLastName(lName);
@@ -36,7 +35,7 @@ public class PutEmpServlet extends HttpServlet {
 		vo.setPhoneNumber(pNumber);
 		vo.setJobId(jId);
 		vo.setSalary(salary1);
-		
+
 		EmpDAO dao = new EmpDAO();
 		EmployeeVO v = dao.insertEmp(vo);
 		String result = "<result>";
@@ -49,7 +48,7 @@ public class PutEmpServlet extends HttpServlet {
 		result += "<jId>" + v.getJobId() + "</jId>";
 		result += "<salary>" + v.getSalary() + "</salary>";
 		result += "</result>";
-		
+
 		response.getWriter().append(result);
 	}
 
