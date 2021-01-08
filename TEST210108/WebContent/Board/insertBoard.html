@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>insertBoard.html</title>
+<script src="../js/Board.js"></script>
+</head>
+<body>
+	<div id="show"></div>
+	<table>
+		<tr>
+			<td><input id="Title" type="text" name="Title"
+				style="font-size: 25px;"></td>
+			<td style="font-size: 25px; text-align: center;">Title</td>
+		</tr>
+		<tr>
+			<td><input id="Content" type="text" name="Content"
+				style="font-size: 25px;"></td>
+			<td style="font-size: 25px; text-align: center;">Content</td>
+		</tr>
+		<tr>
+			<td><input id="Writer" type="text" name="Writer"
+				style="font-size: 25px;"></td>
+			<td style="font-size: 25px; text-align: center;">Writer</td>
+		</tr>
+
+		<tr>
+			<td><button id="addbtn" onclick="insertBtn()"
+					style="padding: 10px; text-align: center; font-size: 25px;">게시글
+					등록</button></td>
+		</tr>
+	</table>
+	<script>
+		function insertBtn() {
+			let Title = document.querySelectorAll('input[name="Title"]')[0].value;
+			let Content = document.getElementById('Content').value;
+			let Writer = document.getElementById('Writer').value;
+			let insertReq = new XMLHttpRequest();
+			let url = '../insertBoard?Title=' + Title + '&Content=' + Content
+					+ '&Writer=' + Writer;
+			insertReq.open('get', url);
+			insertReq.send();
+			insertReq.onload = function() {
+				window.location.reload();
+			}
+		}
+	</script>
+</body>
+</html>
