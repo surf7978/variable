@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Board.html</title>
+<script src="../js/Board.js"></script>
+</head>
+<body>
+	<div id="show"></div>
+	<table>
+		<tr>
+			<td><input id="updateBoard_Id" type="text" name="updateBoard_Id"
+				style="font-size: 25px;"></td>
+			<td style="font-size: 25px; width: 350px; height: 20px;"></td>
+			<td style="font-size: 25px; text-align: center;">Board_Id</td>
+			<td id="clickBoard_Id"
+				style="background-color: silver; width: 350px; height: 20px; font-size: 25px;"></td>
+		</tr>
+		<tr>
+			<td><input id="updateTitle" type="text" name="updateTitle"
+				style="font-size: 25px;"></td>
+			<td><input id="Title" type="text" name="Title"
+				style="font-size: 25px;"></td>
+			<td style="font-size: 25px; text-align: center;">Title</td>
+			<td id="clickTitle"
+				style="background-color: silver; width: 350px; height: 20px; font-size: 25px;"></td>
+		</tr>
+		<tr>
+			<td><input id="updateContent" type="text" name="updateContent"
+				style="font-size: 25px;"></td>
+			<td><input id="Content" type="text" name="Content"
+				style="font-size: 25px;"></td>
+			<td style="font-size: 25px; text-align: center;">Content</td>
+			<td id="clickContent"
+				style="background-color: silver; width: 350px; height: 20px; font-size: 25px;"></td>
+		</tr>
+		<tr>
+			<td><input id="updateWriter" type="text" name="updateWriter"
+				style="font-size: 25px;"></td>
+			<td><input id="Writer" type="text" name="Writer"
+				style="font-size: 25px;"></td>
+			<td style="font-size: 25px; text-align: center;">Writer</td>
+			<td id="clickWriter"
+				style="background-color: silver; width: 350px; height: 20px; font-size: 25px;"></td>
+		</tr>
+		<tr>
+			<td><input id="updateCreation_Date" type="text"
+				name="updateCreation_Date" style="font-size: 25px;" ></td>
+			<td style="font-size: 25px; width: 350px; height: 20px;"></td>
+			<td style="font-size: 25px; text-align: center;">Creation_Date</td>
+			<td id="clickCreation_Date"
+				style="background-color: silver; width: 350px; height: 20px; font-size: 25px;"></td>
+		</tr>
+
+		<tr>
+			<td><button id="updatebtn" onclick="updateBtn()"
+					style="padding: 10px; text-align: center; font-size: 25px;">게시글수정</button></td>
+			<td><button id="addbtn" onclick="insertBtn()"
+					style="padding: 10px; text-align: center; font-size: 25px;">게시글
+					등록</button></td>
+		</tr>
+	</table>
+	<script>
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', '../showBoardList');
+		xhtp.send();
+		xhtp.onload = showBoardList;
+
+		function insertBtn() {
+			let Title = document.querySelectorAll('input[name="Title"]')[0].value;
+			let Content = document.getElementById('Content').value;
+			let Writer = document.getElementById('Writer').value;
+			let insertReq = new XMLHttpRequest();
+			let url = '../insertBoard?Title=' + Title + '&Content=' + Content
+					+ '&Writer=' + Writer;
+			insertReq.open('get', url);
+			insertReq.send();
+			insertReq.onload = function() {
+				window.location.reload();
+			}
+		}
+		
+		function updateBtn() {
+			let updateTitle = document.getElementById('updateTitle').value;
+			let updateContent = document.getElementById('updateContent').value;
+			let updateWriter = document.getElementById('updateWriter').value;
+			let updateCreation_Date = document.getElementById('updateCreation_Date').value;
+			let updateBoard_Id= document.getElementById('updateBoard_Id').value;
+
+			let updateReq = new XMLHttpRequest();
+
+			let url = '../updateBoard?updateBoard_Id=' + updateBoard_Id //
+					+ '&updateTitle=' + updateTitle //
+					+ "&updateContent=" + updateContent //
+					+ "&updateWriter=" + updateWriter //
+					+ "&updateCreation_Date="+ updateCreation_Date;
+			console.log(url);
+			updateReq.open('get', url);
+			updateReq.send();
+			updateReq.onload = function() {
+				window.location.reload();
+			}
+		}
+		
+		document.getElementById('updateCreation_Date').value = new Date().toISOString()
+		.substring(0, 10);
+	</script>
+</body>
+</html>

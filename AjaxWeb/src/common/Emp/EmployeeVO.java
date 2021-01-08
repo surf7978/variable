@@ -1,4 +1,4 @@
-package common;
+package common.Emp;
 
 public class EmployeeVO {
 	int employeeId;

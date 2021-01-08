@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>boardList.html</title>
-		<script src="html/showPage.js"></script>
+		<script src="../js/showPage.js"></script>
 	</head>
 <body>
+	<iframe src="insertBoard.html" style="width:600px; height:350px;"></iframe>
 	<div id="show"></div>
 	<input type="button" id="btn" name="title" value="테이블 출력" style="padding:15px; font-size:30px;">
 	<div id="show1"></div>
@@ -14,13 +15,13 @@
 	<script>
 	
 	let xhtp = new XMLHttpRequest();
-	xhtp.open('get', 'showBoardList');
+	xhtp.open('get', '../showBoardList');
 	xhtp.send();
 	xhtp.onload = showPage;
 	
 	document.getElementById('btn').onclick = function(){
 		let xhtp1 = new XMLHttpRequest();
-		xhtp1.open('get', 'showBoardList');
+		xhtp1.open('get', '../showBoardList');
 		xhtp1.send();
 		xhtp1.onload = showContent;
 		function showContent(){

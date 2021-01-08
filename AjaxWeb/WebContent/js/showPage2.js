@@ -17,7 +17,7 @@ function showPage() {
 	tableTag.appendChild(headerTr);
 	for (let i = 0; i < dataTrs.length; i++) {
 		tableTag.appendChild(addDelBtn(dataTrs[i], delFunc));
-		tableTag.appendChild(addUpdBtn(dataTrs[i], updateFunc));
+		tableTag.appendChild(addUpdBtn(dataTrs[i], updateFunc));//수정버튼 추가하는것
 	}
 	document.getElementById('show').appendChild(tableTag);
 }
@@ -71,19 +71,19 @@ function titleRow(result) {
 	for (let i = 0; i < result[0].childNodes.length; i++) {
 		let thTag = document.createElement('th');
 		thTag.setAttribute('style', 'padding:10px; color:white; background-color: grey; text-align: center;');
-		thTag.setAttribute('id', 'TableHeader'+i);
+		thTag.setAttribute('id', 'TableHeader' + i);
 		let textNode = document.createTextNode(result[0].childNodes[i].nodeName.toUpperCase());
 		thTag.appendChild(textNode);
 		trTag.appendChild(thTag);
 	}
-	
+
 	let thTag = document.createElement('th');
 	thTag.setAttribute('style', 'padding:10px; color:white; background-color: grey; text-align: center;');
 	thTag.setAttribute('id', 'TableHeaderEnd');
 	thTag.setAttribute('colspan', '2');
 	thTag.innerHTML = "처리";
 	trTag.appendChild(thTag);
-	
+
 	return trTag;
 }
 
@@ -92,9 +92,28 @@ function contentRow(result) {
 	for (let i = 0; i < result.length; i++) {
 		let trTag = document.createElement('tr');
 		trTag.setAttribute('id', 'result' + i);
+
+		for (let j = 0; j < result[i].childNodes.length; j++) {
+			let tdTag = document.createElement('td');
+			tdTag.setAttribute('style', 'padding:10px; text-align: center;');
+			tdTag.setAttribute('id', 'result' + i + 'childNodes' + j);
+			tdTag.onmouseover = function() {
+				tdTag.style.fontSize = '20px';
+				tdTag.style.backgroundColor = 'gold';
+			}
+			tdTag.onmouseout = function() {
+				tdTag.style.fontSize = '16px';
+				tdTag.style.background = 'none';
+				//tdTag.style.opacity = 0.5;//투명률(0~1) = .5 로적어야함 0.5아님 = 50%
+			}
+			let textNode = document.createTextNode(result[i].childNodes[j].childNodes[0].nodeValue);
+			tdTag.appendChild(textNode);
+			trTag.appendChild(tdTag);
+		}
+		trTags.push(trTag);
 		trTag.onmouseover = function() {
 			trTag.style.backgroundColor = 'yellow';
-			
+
 			let showEmpId = document.getElementById('clickEmpId');
 			showEmpId.innerHTML = result[i].childNodes[0].childNodes[0].nodeValue;
 			let showfName = document.getElementById('clickfName');
@@ -111,40 +130,25 @@ function contentRow(result) {
 			showjId.innerHTML = result[i].childNodes[6].childNodes[0].nodeValue;
 			let showsalary = document.getElementById('clicksalary');
 			showsalary.innerHTML = result[i].childNodes[7].childNodes[0].nodeValue;
-			
-			//let updatefName = document.getElementById('updatefName');
-			//updatefName.innerHTML = result[i].childNodes[1].childNodes[0].nodeValue;
-			//let updatelName = document.getElementById('updatelName');
-			//updatelName.innerHTML = result[i].childNodes[2].childNodes[0].nodeValue;
-			//let updateemail = document.getElementById('updateemail');
-			//updateemail.innerHTML = result[i].childNodes[3].childNodes[0].nodeValue;
-			//let updatepNumber = document.getElementById('updatepNumber');
-			//updatepNumber.innerHTML = result[i].childNodes[4].childNodes[0].nodeValue;
-			//let updatehireDate = document.getElementById('updatehireDate');
-			//updatehireDate.innerHTML = result[i].childNodes[5].childNodes[0].nodeValue;
-			//let updatejId = document.getElementById('updatejId');
-			//updatejId.innerHTML = result[i].childNodes[6].childNodes[0].nodeValue;
-			//let updatesalary = document.getElementById('updatesalary');
-			//updatesalary.innerHTML = result[i].childNodes[7].childNodes[0].nodeValue;
+
+			//let showfName2 = document.getElementById('showfName');
+			//showfName2.innerHTML = result[i].childNodes[1].childNodes[0].nodeValue;
+			//let showlName2 = document.getElementById('showlName');
+			//showlName2.innerHTML = result[i].childNodes[2].childNodes[0].nodeValue;
+			//let showemail2 = document.getElementById('showemail');
+			//showemail2.innerHTML = result[i].childNodes[3].childNodes[0].nodeValue;
+			//let showpNumber2 = document.getElementById('showpNumber');
+			//showpNumber2.innerHTML = result[i].childNodes[4].childNodes[0].nodeValue;
+			//let showhireDate2 = document.getElementById('showhireDate');
+			//showhireDate2.innerHTML = result[i].childNodes[5].childNodes[0].nodeValue;
+			//let showjId2 = document.getElementById('showjId');
+			//showjId2.innerHTML = result[i].childNodes[6].childNodes[0].nodeValue;
+			//let showsalary2 = document.getElementById('showsalary');
+			//showsalary2.innerHTML = result[i].childNodes[7].childNodes[0].nodeValue;
 		}
 		trTag.onmouseout = function() {
-			trTag.style.backgroundColor = 'white';
+			trTag.style.background = 'none';
 		}
-		for (let j = 0; j < result[i].childNodes.length; j++) {
-			let tdTag = document.createElement('td');
-			tdTag.setAttribute('style', 'padding:10px; text-align: center;');
-			tdTag.setAttribute('id', 'result' + i + 'childNodes' + j);
-			//tdTag.onmouseover = function() {
-			//	tdTag.style.fontSize = '20px';
-			//}
-			//tdTag.onmouseout = function() {
-			//	tdTag.style.fontSize = '16px';
-			//}
-			let textNode = document.createTextNode(result[i].childNodes[j].childNodes[0].nodeValue);
-			tdTag.appendChild(textNode);
-			trTag.appendChild(tdTag);
-		}
-		trTags.push(trTag);
 	}
 	return trTags;
 }

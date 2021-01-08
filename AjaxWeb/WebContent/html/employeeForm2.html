@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>html/employeeForm2.html</title>
-<script src="showPage2.js"></script>
+<script src="../js/showPage2.js"></script>
 </head>
 <body>
 	<table>
 		<tr>
-			<td><input id="updateId" type="text" name="updateId"
-				value="597" style="font-size: 25px;"></td>
+			<td><input id="updateId" type="text" name="updateId" value="597"
+				style="font-size: 25px;"></td>
 			<td style="font-size: 25px; width: 350px; height: 20px;"></td>
 			<td style="font-size: 25px; text-align: center;">Employee_id</td>
 			<td id="clickEmpId"
@@ -86,6 +86,40 @@
 		</tr>
 	</table>
 	<div id="show"></div>
+	<table>
+		<tr>
+			<td><input id="showId" type="text" name="updateId"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+		<tr>
+			<td><input id="showfName" type="text" name="updatefName"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+		<tr>
+			<td><input id="showlName" type="text" name="updatelName"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+		<tr>
+			<td><input id="showemail" type="text" name="updateemail"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+		<tr>
+			<td><input id="showpNumber" type="text" name="updatepNumber"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+		<tr>
+			<td><input id="showhireDate" type="text" name="updatehireDate"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+		<tr>
+			<td><input id="showjId" type="text" name="updatejId"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+		<tr>
+			<td><input id="showsalary" type="text" name="updatesalary"
+				style="font-size: 25px; background-color:gold;"></td>
+		</tr>
+	</table>
 	<script>
 		function updateBtn() {
 			let updateId = document.getElementById('updateId').value;
@@ -99,6 +133,7 @@
 
 			let updateReq = new XMLHttpRequest();
 
+			//get방식출력
 			let url = '../UpdateEmpServlet?updateId=' + updateId //
 					+ '&updatefName=' + updatefName //
 					+ "&updatelName=" + updatelName //
@@ -110,9 +145,23 @@
 			console.log(url);
 			updateReq.open('get', url);
 			updateReq.send();
-			updateReq.onload = function(){
-				alert(updateReq.responseText);
-				window.location.reload();
+
+			//host방식출력
+			//let url = 'updateId=' + updateId //
+			//		+ '&updatefName=' + updatefName //
+			//		+ "&updatelName=" + updatelName //
+			//		+ "&updateemail=" + updateemail //
+			//		+ "&updatepNumber=" + updatepNumber //
+			//		+ "&updatehireDate=" + updatehireDate //
+			//		+ "&updatejId=" + updatejId //
+			//		+ "&updatesalary=" + updatesalary;
+			//updateReq.open('post', '../UpdateEmpServlet?');
+			//updateReq.setRequestHeader('Content-type','application/x-www-form-rulencoded');
+			//updateReq.send(url);
+
+			updateReq.onload = function() {
+				//alert(updateReq.responseText); //OK,NG문구 출력
+				window.location.reload();//페이지 재실행해서 업데이트된거 보여줌
 			}
 		}
 
@@ -154,9 +203,9 @@
 				}
 				document.getElementById('tbl').appendChild(trTag);
 
-				//버튼추가
+				//정보추가 눌렀을때 삭제, 수정 버튼 추가되는것
 				addDelBtn(trTag, delFunc);
-				addUpdBtn(trTag, updateFunc);
+				addUpdBtn(trTag, updateFunc);//여기에 수정하고 싶었는데 못함
 			}
 		}
 

@@ -25,7 +25,7 @@
 			let content = document.getElementById('content').value;
 			let writer = document.getElementsByTagName('input')[2].value; //여러가지 방법으로 get따옴(id가 제일 직관적임)
 			let xhtp = new XMLHttpRequest();
-			let url = 'insertBoard?title='+title+'&content='+content+'&writer='+writer;
+			let url = '../insertBoard?title='+title+'&content='+content+'&writer='+writer;
 			xhtp.open('get', url);
 			xhtp.send();
 			xhtp.onload = function(){
