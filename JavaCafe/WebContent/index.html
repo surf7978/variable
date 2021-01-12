@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- https://developers.google.com/speed/libraries#jquery에서 복사해서 연결 -->
+</head>
+<body>
+<script>
+	$(function(){
+		$.ajax({
+			url:'getEmpList',
+			type:'get',
+			dataType:'json',
+			success: function(result){
+				//console.log(result);
+				let data = result;
+				let firstNames = $(data).map(function(i,o){
+					return o.firstName; //servlet의 파라미터명과 같아야함
+				}).get();
+				//console.log(firstNames);
+				let grepNames = $.grep(firstNames, function(o,i){ //jQuery.grep(Ary, function, boolean)
+					return o.length > 5;
+				}, false); 
+				console.log(grepNames);
+			},
+			error: function(result){
+				console.log(result);
+			}
+		});
+	})
+</script>
+</body>
+</html>

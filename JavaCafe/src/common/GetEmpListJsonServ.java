@@ -2,6 +2,7 @@ package common;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +20,25 @@ public class GetEmpListJsonServ extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		EmpDAO dao = new EmpDAO();
+		List<EmployeeVO> list = dao.getEmpList();
 		PrintWriter out = response.getWriter();
-		out.print("{\"name\":\"Hong\",\"age\":\20}"); 
+		String json = "[";
+		int cnt =1;
+		for(EmployeeVO emp : list) {
+			json += "{";
+			json += "\"empId\":\""+ emp.getEmployeeId() +"\"";
+			json += ",\"firstName\":\""+ emp.getFirstName() +"\"";
+			json += ",\"lastName\":\""+ emp.getLastName() +"\"";
+			json += "}";
+			if(list.size() != cnt++) {
+				json += ",";
+			}
+		}
+		json += "]";
+		
+		
+		out.print(json); 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
