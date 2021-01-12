@@ -22,6 +22,14 @@ insert into product values('bean_004','콜롬비아 원두4','bean',4200,'item.j
 insert into product values('bean_005','콜롬비아 원두5','bean',4100,'item.jsp', '콜롬비아산 맛있는 원두입니다.5', 3, '콜롬비아 원두5', '');
 insert into product values('bean_006','콜롬비아 원두6','bean',4000,'item.jsp', '콜롬비아산 맛있는 원두입니다.6', 4, '콜롬비아 원두6', '');
 select * from product;
+commit; 커밋안해주면 테이블에 내용없음
+update product set image='bean1.png' where item_no = 'bean_001';
+update product set image='bean2.png' where item_no = 'bean_002';
+update product set image='bean3.png' where item_no = 'bean_003';
+update product set image='bean4.png' where item_no = 'bean_004';
+update product set image='bean5.png' where item_no = 'bean_005';
+update product set image='bean6.png' where item_no = 'bean_006';
+commit;
 -->
 
 
@@ -30,6 +38,11 @@ select * from product;
 
   <!-- Custom styles for this template -->
   <link href="css/shop-homepage.css" rel="stylesheet">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script src="../js/cafeList.js"></script> <!-- 스크립트가 헤드에 src되있으니까 바디에 출력하려면 $(function)안에 넣어야함 -->
+
 
 </head>
 <body>
@@ -110,6 +123,7 @@ select * from product;
 
         <div class="row">
 
+          <!-- 이거 json으로 만들 예정 +DB연결해서 데이터 입력할 예정
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="../images/원두.jpg" alt=""></a>
@@ -117,95 +131,19 @@ select * from product;
                 <h4 class="card-title">
                   <a href="#">콜롬비아 원두</a>
                 </h4>
-                <h5>3,500억</h5>
+                <h5>3,500</h5>
                 <p class="card-text">콜롬비아산 맛있는 원두입니까?</p>
               </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small><!-- 이제 평점 빈별&#9734; 별&#9733; -->
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Two</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
               </div>
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Three</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Four</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Five</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Six</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
+          </div> 
+           -->
+          
+       
+       
+       
         </div>
         <!-- /.row -->
 
