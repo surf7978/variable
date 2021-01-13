@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmpDAO {
 	Connection conn = null;
@@ -28,6 +30,79 @@ public class EmpDAO {
 			e.printStackTrace();
 		}
 	} // end of 생성자
+	
+	public void insertSchedule(ScheduleVO sch) {
+		String sql = "insert into calendar values (?,?,?,?)";
+		try {
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, sch.getTitle());
+			psmt.setString(2, sch.getStartDate());
+			psmt.setString(3, sch.getEndDate());
+			psmt.setString(4, sch.getUrl());
+			int r = psmt.executeUpdate();
+			System.out.println(r+"건이 입력되었습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public List<ScheduleVO> getScheduleList() {
+		String sql = "select * from calendar order by 2";
+		List<ScheduleVO> list = new ArrayList<>();
+		try {
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			ResultSet rs = psmt.executeQuery();
+			while (rs.next()) {
+				ScheduleVO vo = new ScheduleVO();
+				vo.setTitle(rs.getString("title"));
+				vo.setStartDate(rs.getString("start_date"));
+				vo.setEndDate(rs.getString("end_date"));
+				vo.setUrl(rs.getString("url"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close(); // 이거 계속 켜두면 가끔 접속에러뜸 할때마다 접속꺼줘야 함
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public Map<String, Integer> getMemberByDept(){
+		String sql = "select department_name, count(*) "
+				+ "from employees e,departments d "
+				+ "where e.department_id = d.department_id "
+				+ "group by department_name";
+		
+		Map<String, Integer> map = new HashMap<>();
+		try {
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			ResultSet rs = psmt.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getString(1), rs.getInt(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return map;
+	}// end of getMemberByDept
 
 	public boolean deleteEmp(EmployeeVO vo) {
 		String sql = "delete from emp_temp where employee_id = ?";

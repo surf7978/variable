@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>api/google_chart.html</title>
+<!-- 
+데이터시트 만들기
+select * from employees;
+select * from departments;
+
+select department_name, count(*) 
+from employees e,departments d 
+where e.department_id = d.department_id 
+group by department_name;
+
+let result = [
+['Administration',	1],
+['Accounting',	2],
+['IT',	6],
+['Executive',	3],
+['Shipping',	6],
+['Sales',	3],
+['Marketing',	2]
+];
+이렇게 데이터 가져오게 할 예정
+ -->
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+      $.ajax({
+    	  url : '../getMembersByDept',
+      	  dataType: 'json', //parser error뜸 이런 구문은 JSON타입으로 못바꿈 = []를 {}로 바꿔야함 ''도 안됨 ""여야됨 ,도 :로 바꿔야됨
+      	  success: chartCallBackFunc,
+      	  error: function(result) {
+      		console.log(result); 
+      	  }
+      });	
+      
+
+ 	  function chartCallBackFunc(result){
+ 			//console.log(result);
+    		let data = result;
+    		let outAry = [];
+    		let titleAry = ['Task', 'Hours per Day'];
+    		outAry.push(titleAry);
+    		
+    		for(val of data){
+    			let inAry = [];
+    			for(field in val){ //필드명이 달라서 for 또 써줌
+    				//console.log(field, val[field]);
+    				inAry.push(field);
+    				inAry.push(val[field]);
+    			}
+    			outAry.push(inAry);
+    			//console.log(inAry);
+    		}
+    		//console.log(outAry);
+ 		  
+ 	 	  //let result = [
+ 	      //    ['Task', 'Hours per Day'],
+ 	      //    ['Work',    11],
+ 	      //    ['Eat',      2],
+ 	      //    ['Commute',  2],
+ 	      //    ['Watch TV', 2],
+ 	      //    ['Sleep',    7],
+ 	      //    ['Hobby',    3]
+ 	      //  ];		
+
+ 		 google.charts.load('current', {'packages':['corechart']});
+ 	     google.charts.setOnLoadCallback(drawChart);
+
+ 	     function drawChart() {
+
+ 	       var data = google.visualization.arrayToDataTable(outAry);
+
+ 	       var options = {
+ 	         title: 'My Daily Activities'
+ 	       };
+
+ 	       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+ 	       chart.draw(data, options);
+ 	     }  
+ 	  }
+   </script>
+</head>
+<body>
+	<div id="piechart" style="width: 900px; height: 500px;"></div>
+</body>
+</html>
