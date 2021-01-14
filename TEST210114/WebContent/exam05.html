@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exam05</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
+<script>
+
+$(function(){
+	$.ajax({
+		url:'members.json',
+		type:'get',
+		dataType:'json',
+		success: function(result){
+			console.log(' 데이터 추출 성공 ');
+			//추출된 데이터 확인용 콘솔
+			console.log(result);
+			
+			//[{},{},{}]이렇게 추출된 데이터, 배열로 바꿔주기 >>> [[],[],[]]이렇게
+			let outAry = [];
+			for(val of result){ 
+				let inAry = [];
+				for(field in val){
+					console.log(field);
+					console.log(val[field]);
+					inAry.push(val[field]);
+				}
+				outAry.push(inAry);
+			}
+			$(document).ready(function() {
+			    $('#show').DataTable( {
+			        data: outAry,
+			        columns: [
+			            { title: "mem_id" },
+			            { title: "first_name" },
+			            { title: "last_name" },
+			            { title: "email" },
+			            { title: "gender" },
+			            { title: "address" }
+			        ]
+			    });
+			});
+			
+		},
+		error: function(result){
+			console.log(' 데이터 추출 실패 ');
+		}
+	});
+})
+</script>
+</head>
+<body>
+<table id="show"></table>
+</body>
+</html>

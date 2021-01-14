@@ -21,7 +21,7 @@ public class GetdataSetListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//js로 구현 테이블용
+		//js로 구현
 //		apiDAO dao = new apiDAO();
 //		String xml = "<dataset>";
 //		List<apiVO> list = dao.getDataSetList();
@@ -38,27 +38,6 @@ public class GetdataSetListServlet extends HttpServlet {
 //		xml += "</dataset>";// 데이터 넣어줌
 //
 //		response.getWriter().append(xml);
-		
-		//js로 구현
-//		apiDAO dao = new apiDAO();
-//		List<apiVO> list = dao.getDataSetList();
-//		String js = "[";
-//		int cnt =1;
-//		for(apiVO vo : list) {
-//			js += "[";
-//			js += "\""+ vo.getPosition() +"\",";
-//			js += "\""+ vo.getPosition() +"\",";
-//			js += "\""+ vo.getOffice() +"\",";
-//			js += "\""+ vo.getExtn() +"\",";
-//			js += "\""+ vo.getStart_date() +"\",";
-//			js += "\""+ vo.getSalary() +"\"";
-//			js += "]";
-//			if(list.size() != cnt++) {
-//				js += ",";
-//			}
-//		}
-//		js += "]";
-//		response.getWriter().append(js);
 		
 		//json으로 구현
 		apiDAO dao = new apiDAO();

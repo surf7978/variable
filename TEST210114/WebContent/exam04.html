@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exam04</title>
+<script>
+function insertPhoneNumber(){
+	let trTag = document.createElement('tr');
+	document.getElementById('show').append(trTag);
+	
+	let tdNameTag = document.createElement('td');
+	tdNameTag.innerHTML = document.getElementById('name').value;
+	trTag.append(tdNameTag);
+	
+	let tdAgeTag = document.createElement('td');
+	tdAgeTag.innerHTML = document.getElementById('age').value;
+	trTag.append(tdAgeTag);
+	
+	let tdPhoneNumberTag = document.createElement('td');
+	tdPhoneNumberTag.innerHTML = document.getElementById('phoneNumber').value;
+	trTag.append(tdPhoneNumberTag);
+}
+</script>
+<style>
+td{
+	font-align:center;
+	padding :10px;
+}
+</style>
+</head>
+<body>
+<div>
+이름 : <input type="text" id="name" value="홍길동"><br>
+나이 : <input type="text" id="age" value="20"><br>
+전화번호 : <input id="phoneNumber" value="010-1111-2222"><br>
+<button id="save" onclick="insertPhoneNumber()">저장</button>
+</div>
+<table id="show" border="1px">
+<tr>전화번호부</tr>
+<tr><td>이름</td><td>나이</td><td>전화번호</td></tr>
+</table>
+</body>
+</html>

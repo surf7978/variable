@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded',function() {
 				var time = prompt('시간 등록:');
 				if (title) {
 					calendar.addEvent({
-					title : title,
-					start : arg.start,
-					end : arg.end,
-					allDay : arg.allDay
+						title : title,
+						start : arg.start,
+						end : arg.end,
+						allDay : arg.allDay
 					});
 					//타이틀, 2020-09-01T10:00:00
 					console.log(title, arg.startStr, time);
@@ -57,13 +57,16 @@ document.addEventListener('DOMContentLoaded',function() {
 					//데이터베이스 입력처리
 					let scheduleReq = new XMLHttpRequest();
 					scheduleReq.open('post','../insertSchedule');//post방식으로 넘김 = 이때 send방식으로 파라미터넘김
-					scheduleReq.setRequestHeader("Content-type", "application/w-www-form-urlencoded");
+					scheduleReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					if(time){
 						startTime = arg.startStr+'T'+time;
+						console.log('title='+title+'&start='+startTime);
 					}else{
 						startTime = arg.startStr;
+						console.log('title='+title+'&start='+startTime);
 					}
 					scheduleReq.send('title='+title+'&start='+startTime);
+					//scheduleReq.send('title=test&start=hello'); 테스트할 때 이렇게 하기
 					scheduleReq.onload = function(){
 						console.log(scheduleReq);
 					}
@@ -71,7 +74,7 @@ document.addEventListener('DOMContentLoaded',function() {
 				calendar.unselect()
 				},
 				eventClick : function(arg) {
-				if (confirm('Are you sure you want to delete this event?(진짜 지울꺼임?)')) {
+				if (confirm('Are you sure you want to delete this event?')) {
 				arg.event.remove()
 				}
 				},

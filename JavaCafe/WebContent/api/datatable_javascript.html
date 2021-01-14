@@ -8,48 +8,93 @@
 <link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
 <script>
 
-//json으로 구현
+
 let xhtp = new XMLHttpRequest();
 xhtp.open('get','../GetdataSetListServlet',true);//true비동기방식 false동기화방식
 xhtp.send();
 xhtp.onload = showDataSetList;
 	  
 function showDataSetList(){
-//	let data = JSON.parse(xhtp.response);
-//	let outAry = [];
-//	for(val of data){ //[{},{},{}]이렇게 된거 [[],[],[]]이렇게 바꿔줌
-//		let inAry = [];
-//		for(field in val){
-//			console.log(field);
-//			console.log(val[field]);
-//			inAry.push(val[field]);
-//		}
-//		outAry.push(inAry);
-//	}
+
+	//txt파일에서 데이터 출력하기
 //	$(document).ready(function() {
-//	    $('#example').DataTable( {
-//	        data: outAry,
-//	        columns: [
-//	            { title: "Name" },
-//	            { title: "Position" },
-//	            { title: "Office" },
-//	            { title: "Extn." },
-//	            { title: "Start date" },
-//	            { title: "Salary" }
-//	        ]
-//	    } );
+//		$('#example').DataTable({
+//			"ajax": 'dataSet.txt',
+//		});
 //	});
-
-	
-$(document).ready(function() {
-	$('#example').DataTable({
-		"ajax": 'dataSet.txt',
+	  
+	//json으로 구현
+	let data = JSON.parse(xhtp.response);
+	let outAry = [];
+	for(val of data){ //[{},{},{}]이렇게 된거 [[],[],[]]이렇게 바꿔줌
+		let inAry = [];
+		for(field in val){
+			console.log(field);
+			console.log(val[field]);
+			inAry.push(val[field]);
+		}
+		outAry.push(inAry);
+	}
+	$(document).ready(function() {
+	    $('#json').DataTable( {
+	        data: outAry,
+	        columns: [
+	            { title: "Name" },
+	            { title: "Position" },
+	            { title: "Office" },
+	            { title: "Extn." },
+	            { title: "Start date" },
+	            { title: "Salary" }
+	        ]
+	    });
 	});
-});
 	
+	//js로 구현
+	let xhtp1 = new XMLHttpRequest();
+	xhtp1.open('get','../GetdataSetListServlet1',true);//true비동기방식 false동기화방식
+	xhtp1.send();
+	xhtp1.onload = showDataSetList;
+	function showDataSetList(){
+		console.log(xhtp1);
+		console.log(xhtp1.response);
+		
+		
+		//이전테이블삭제
+		let clear = document.getElementById('show');
+	    clear.innerHTML = ' ';
+		console.log(xhtp1.responseXML); 
+		//연결쓰
+		let doc = xhtp1.responseXML;//XML타입으로 가져옴
+		let result = doc.getElementsByTagName('record');
+		//테이블선언
+        let tableTag = document.createElement('table');
+        tableTag.setAttribute('border', '1');
+        tableTag.setAttribute('style', 'background-color:silver; cursor: grab;');
+		//테이블헤드부분
+        let headerTrTag = document.createElement('tr');
+        for(let i=0; i<result[0].childNodes.length; i++){
+            let thTag = document.createElement('th');
+            thTag.setAttribute('style','text-align:center; padding:15px; color: white; background-color: gray;');
+            let textNode = document.createTextNode(result[0].childNodes[i].nodeName.toUpperCase().replace('_',' '));
+            thTag.append(textNode);
+            headerTrTag.append(thTag);
+        }
+        tableTag.append(headerTrTag);
+		//테이블내용
+        for(let i=0; i<result.length; i++){
+            let trTag = document.createElement('tr');
+            for(let j=0; j<result[i].childNodes.length; j++){
+                let tdTag = document.createElement('td');
+                tdTag.setAttribute('style','text-align:center; padding:15px; background-color: white;');
+                let textNode = document.createTextNode(result[i].childNodes[j].childNodes[0].nodeValue);
+                tdTag.append(textNode);
+                trTag.append(tdTag);
+            }
+            tableTag.append(trTag);
+        }
+        document.getElementById('show').append(tableTag);//위에 <body>에 만들어줘야함
+	}
 
-	
-	
 }
 </script>
 <!-- 데이터셋을 구현하는것 만들기 -->
@@ -72,6 +117,14 @@ select * from dataset;
  -->
 </head>
 <body>
+<div style="font-size:50px;">TXT파일에서 AJAX출력</div>
 <table id="example" class="display" width="100%"></table>
+
+<div style="font-size:50px;"> JSON으로 구현</div>
+<table id="json" class="display" width="100%"></table>
+
+<div style="font-size:50px;">JS로 구현</div>
+<div id="show"></div>
+
 </body>
 </html>

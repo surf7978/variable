@@ -18,6 +18,7 @@ public class PutScheduleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		
 		String title = request.getParameter("title");
 		String start = request.getParameter("start");
@@ -30,6 +31,7 @@ public class PutScheduleServlet extends HttpServlet {
 		sch.setEndDate(end);
 		sch.setUrl(url);
 		
+		System.out.println(sch);
 		EmpDAO dao = new EmpDAO();
 		dao.insertSchedule(sch);
 	}

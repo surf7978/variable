@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exam06</title>
+<script>
+let xhtp = new XMLHttpRequest();
+xhtp.open('get', 'employees.xml');
+xhtp.send();
+xhtp.onload = function(){
+	//데이터 추출 확인용 콘솔
+	console.log(xhtp.responseXML);
+	
+	let doc = xhtp.responseXML;
+	let result = doc.getElementsByTagName('record');
+	
+	//테이블 선언
+    let tableTag = document.createElement('table');
+    tableTag.setAttribute('border', '1');
+    tableTag.setAttribute('style', 'cursor: grab;');
+    
+	//테이블 내용
+    for(let i=0; i<result.length; i++){
+        let trTag = document.createElement('ul');
+        for(let j=0; j<result[i].childNodes.length; j++){
+        	if(result[0].childNodes[j].nodeName != 'last_name' && result[0].childNodes[j].nodeName != 'email' && result[0].childNodes[j].nodeName != 'gender'){
+	            let tdTag = document.createElement('li');
+    	        tdTag.setAttribute('style','text-align:left; padding:15px; background-color: white;');
+        	    let textNode = document.createTextNode(result[i].childNodes[j].nodeName+" : "+result[i].childNodes[j].childNodes[0].nodeValue);
+            	tdTag.append(textNode);
+            	trTag.append(tdTag);
+        	}
+       }
+        tableTag.append(trTag);
+    }
+    document.getElementById('show').append(tableTag);
+}
+</script>
+</head>
+<body>
+<div style="font-size:50px">사원 리스트</div>
+<div id="show"></div>
+</body>
+</html>
