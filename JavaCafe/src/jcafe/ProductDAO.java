@@ -29,6 +29,39 @@ public class ProductDAO {
 		}
 	}// end of ProductDAO
 	
+	public ProductVO getProduct(ProductVO vo) {
+		String sql = "select * from product where item_no = ?";
+		ProductVO v = null;
+		try {
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getItemNo());
+			ResultSet rs = psmt.executeQuery();
+			if(rs.next()) {
+				v = new ProductVO();
+				v.setItemNo(rs.getString("item_no"));
+				v.setItem(rs.getString("item"));
+				v.setCategory(rs.getString("category"));
+				v.setPrice(rs.getInt("price"));
+				v.setLink(rs.getString("link"));
+				v.setContent(rs.getString("content"));
+				v.setLikeIt(rs.getInt("like_it"));
+				v.setAlt(rs.getString("alt"));
+				v.setImage(rs.getString("image"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return v;
+	} //end of getProduct
+	
 	public void insertProdeuct(ProductVO vo) {
 		String sql = "insert into product values"//
 				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?)"; //
