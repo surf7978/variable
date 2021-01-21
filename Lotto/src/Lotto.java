@@ -28,7 +28,7 @@ public class Lotto {
 				int[][] mathAry = new int[play][6];
 				for(int i=0; i<play; i++) {
 					for(int j=0; j<6; j++) {
-						result = Math.random()*44+1;
+						result = Math.random()*45+1; //0<Math.random()*45<1 이라 +1해줘야함
 						mathAry[i][j] = (int) result;
 						for(int k=0; k<j; k++) {
 							if(mathAry[i][j]==mathAry[i][k]) {
