@@ -88,7 +88,17 @@ public class Lotto {
 	}
 	
 	public static void mathAvg(int[][] mathAry) {
-		
+		int[] result = new int[45]; 
+		for(int i=0; i<mathAry.length; i++) {
+			for(int j=0; j<mathAry[i].length; j++) {
+				if(mathAry[i][j]==1) {
+					result[0] = mathAry[i][j];
+				}else if(mathAry[i][j]==2) {
+					result[1] = mathAry[i][j];
+				}
+			}
+		}
+		System.out.println("1 : "+result[0]+"회, 2 : "+result[1]+"회");
 	}
 
 }
