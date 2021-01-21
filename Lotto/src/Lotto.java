@@ -1,7 +1,4 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 public class Lotto {
@@ -12,7 +9,6 @@ public class Lotto {
 		double result = Math.random()*44+1;
 		//Random random =  new Random();
 		//random.nextInt(44)+1해도됨
-
 
 		
 		while(run) {
@@ -27,13 +23,13 @@ public class Lotto {
 				
 				int play = insertMoney/1000;
 				System.out.println(insertMoney+"원 충전으로 "+play+"회 실행");
+				
 				System.out.println("당첨번호");
-				int beforeMath=0;
 				int[][] mathAry = new int[play][6];
 				for(int i=0; i<play; i++) {
 					for(int j=0; j<6; j++) {
 						result = Math.random()*44+1;
-						mathAry[i][j] += result;
+						mathAry[i][j] = (int) result;
 						for(int k=0; k<j; k++) {
 							if(mathAry[i][j]==mathAry[i][k]) {
 								j--;
@@ -68,4 +64,7 @@ public class Lotto {
 		System.out.println("<<프로그램 종료>>");
 	}
 
+	//java 파일 export할때는 .jre로
+	//web파일은 .war로 export할 것
+	
 }
